@@ -32,10 +32,11 @@
 run ~/aspire/initpath.m
 run ~/cwf_denoise/cwf_paths.m
 
+tic;
 clear all;
-K = 1000; %K is the number of images
-SNR = 1/10; %SNR
-load('/scratch/tbhamre/cwf_class/clean_data_6454_65.mat'); % load clean centered projection images 
+K = 5000; %K is the number of images
+SNR = 1/100; %SNR
+load('/scratch/ARCHIVE_from_sdl6/tbhamre/cwf_class/clean_data_6454_65.mat'); % load clean centered projection images 
 disp('Loaded clean data')
 %downsampleddim=65;
 %sprintf('Downsampling to %dX%d grid', downsampleddim, downsampleddim)
@@ -54,8 +55,8 @@ q = data.q(:, 1:K);
 %images = data.projections(:, :, 1:K);
 %clear data;
 L = size(images, 1);
-n_nbor = 5; %number of nearest neighbors for initial classification.
-n_nbor_large=5;
+n_nbor = 10; %number of nearest neighbors for initial classification.
+n_nbor_large=50;
 isrann = 0;
 
 % Initial Classification with CWF
@@ -114,6 +115,8 @@ toc_align = toc(tic_align);
 [ d_m, error_rot_m ] = check_simulation_results(class_m, class_refl_m, -rot_m, q); % should use minus sign for init class, no minus sign for VDM 
 sprintf('sPCA + new metric: Number of images with correlation > %f is %d',0.9, numel(find(d_m(d_m>=0.9))))
 %% Initial Classification with old FBsPCA
+sprintf('sPCA: Number of images with correlation > %f is %d',0.9, numel(find(d_f(d_f>=0.9))))
+SNR
 %%[ images ] = Phase_Flip(images, defocus_group, CTF); %phase flipping 
 %%disp('Phase flipped');
 %r_max =sPCA_data.R; %radius of region of interest. Determined by user.
@@ -148,5 +151,4 @@ sprintf('sPCA + new metric: Number of images with correlation > %f is %d',0.9, n
 %sprintf('MSE with CWF is %f',mse_cwf)
 sprintf('MSE with sPCA is %f',mse_spca)
 
-
-
+(toc./(60*60*24)) 
