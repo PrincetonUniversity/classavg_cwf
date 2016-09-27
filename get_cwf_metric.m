@@ -80,6 +80,6 @@ for k=unique(ang_freqs)'
 end
 
 %mse_tot=err_tot/ctr_tot;
-data_cwf.Coeff_pr=denoised_coeff_pr;
+data_cwf.Coeff_pr=denoised_coeff_pr; % In lower dimensional subspace of principal components
 data_cwf.Coeff=denoised_coeff;
 data_cwf.Lmat=L;

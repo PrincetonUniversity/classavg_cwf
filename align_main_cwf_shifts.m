@@ -19,7 +19,7 @@ function [ shifts, corr, average, norm_variance, class_met, class_refl_met, angl
 %       norm_variance: compute the variance of each class averages.
 %
 % Zhizhen Zhao Feb 2014
-%Tejal Bhamre June 2016
+%Tejal Bhamre Sept 2016
 P=size(data, 3);
 L=size(data, 1);
 l=size(class_VDM, 2);
@@ -36,7 +36,7 @@ Freqs = FBsPCA_data.Freqs;
 clear FBsPCA_data;
 Lmat=data_cwf.Lmat;
 cwf_coeff=data_cwf.Coeff;
-cwf_coeff_pr=data_cwf.Coeff_pr;
+cwf_coeff_pr=data_cwf.Coeff_pr; % projected coeffs, in lower dimensional subspace of principal components
 clear data_cwf;
 
 %Check if the number of nearest neighbors is too large
@@ -140,22 +140,24 @@ parfor j=1:length(list_recon)
 
     ctf_id=def_grp(:,index); % defocus indices
     metr_list=zeros(size(index));	
-    cwf_coeff_nn=cwf_coeff;
 
-    for ii=1:length(cwf_coeff)
-	cwf_coeff_nn{ii}=cwf_coeff{ii}(:,index); % Coeffs for nearest neighbors from VDM
-	if mod(ii-1,2)==0
-		ref_factor=1;
-	else
-		ref_factor=-1;
-	end
-	for nn=1:size(cwf_coeff_nn{ii},2)
-		if (refl_j(nn)==2)
-	cwf_coeff_nn{ii}(:,nn)=conj(cwf_coeff_nn{ii}(:,nn))*ref_factor; % Adjusting coeffs for reflections 
-		end	
-	end	
-        cwf_coeff_nn{ii}=bsxfun(@times,cwf_coeff_nn{ii},exp(-sqrt(-1)*(ii-1)*(-angle_j*pi/180))); % Adjusting coeffs for rotations
-    end
+    % In original space, not needed, use after PCA (code below)	
+    %cwf_coeff_nn=cwf_coeff;
+
+    %for ii=1:length(cwf_coeff)
+    %    cwf_coeff_nn{ii}=cwf_coeff{ii}(:,index); % Coeffs for nearest neighbors from VDM
+    %    if mod(ii-1,2)==0
+    %    	ref_factor=1;
+    %    else
+    %    	ref_factor=-1;
+    %    end
+    %    for nn=1:size(cwf_coeff_nn{ii},2)
+    %    	if (refl_j(nn)==2)
+    %    cwf_coeff_nn{ii}(:,nn)=conj(cwf_coeff_nn{ii}(:,nn))*ref_factor; % Adjusting coeffs for reflections 
+    %    	end	
+    %    end	
+    %    cwf_coeff_nn{ii}=bsxfun(@times,cwf_coeff_nn{ii},exp(-sqrt(-1)*(ii-1)*(-angle_j*pi/180))); % Adjusting coeffs for rotations
+    %end
 
     cwf_coeff_nn_pr=cwf_coeff_pr;
 
@@ -172,6 +174,7 @@ parfor j=1:length(list_recon)
 		end	
 	end	
         cwf_coeff_nn_pr{ii}=bsxfun(@times,cwf_coeff_nn_pr{ii},exp(-sqrt(-1)*(ii-1)*(-angle_j*pi/180))); % Adjusting coeffs for rotations
+        cwf_coeff_nn_pr{ii}=bsxfun(@times,cwf_coeff_nn_pr{ii},conj(phase(:,id))); % Adjusting coeffs for shifts
     end
 
     ctfid_j=def_grp(:,j);		
