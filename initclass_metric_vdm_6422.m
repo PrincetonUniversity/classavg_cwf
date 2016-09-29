@@ -35,13 +35,13 @@ run ~/cwf_denoise/cwf_paths.m
 tic;
 clear all;
 K = 10000; %K is the number of images
-SNR = 1/20; %SNR
+SNR = 1/60; %SNR
 use_shifted=0;
 
 if(use_shifted)
-load('/scratch/ARCHIVE_from_sdl6/tbhamre/cwf_class/clean_data_6454_65_shift3.mat'); % load clean centered projection images 
+load('/scratch/ARCHIVE_from_sdl6/tbhamre/cwf_class/clean_data_2660_65.mat'); % load clean centered projection images 
 else
-load('/scratch/ARCHIVE_from_sdl6/tbhamre/cwf_class/clean_data_6454_65.mat'); % load clean centered projection images 
+load('/scratch/ARCHIVE_from_sdl6/tbhamre/cwf_class/clean_data_2660_65.mat'); % load clean centered projection images 
 end
 disp('Loaded clean data')
 %downsampleddim=65;
@@ -65,7 +65,7 @@ n_nbor = 10; %number of nearest neighbors for initial classification.
 n_nbor_large=50;
 isrann = 0;
 
-use_VDM=0;
+use_VDM=1;
 k_VDM_in = n_nbor; % number of nearest neighbors for building graph for VDM.
 VDM_flag = 0; % VDM using union rule
 k_VDM_out = n_nbor; % number of nearest neighbors search for 
@@ -153,6 +153,10 @@ sprintf('sPCA + new metric: Number of images with correlation > %f is %d',0.9, n
 %% Initial Classification with old FBsPCA
 sprintf('sPCA: Number of images with correlation > %f is %d',0.9, numel(find(d_f(d_f>=0.9))))
 SNR
+
+
+
+
 %%[ images ] = Phase_Flip(images, defocus_group, CTF); %phase flipping 
 %%disp('Phase flipped');
 %r_max =sPCA_data.R; %radius of region of interest. Determined by user.

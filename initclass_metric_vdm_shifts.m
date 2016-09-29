@@ -36,7 +36,7 @@ tic;
 clear all;
 K = 10000; %K is the number of images
 SNR = 1/20; %SNR
-use_shifted=0;
+use_shifted=1;
 
 if(use_shifted)
 load('/scratch/ARCHIVE_from_sdl6/tbhamre/cwf_class/clean_data_6454_65_shift3.mat'); % load clean centered projection images 
@@ -146,7 +146,9 @@ k_out=n_nbor_large;
 tic_align = tic;
 new_num_nn=n_nbor;
 [data_cwf] =  data_cwf_metric(images, CTF, defocus_group, noise_v_r, ndef, def1, def2, B, lambda, use_CTF);
-[ shifts, corr, average, norm_variance, class_m, class_refl_m, rot_m ] = align_main_cwf( images_fl, rot_f_large, class_f_large, class_refl_f_large, sPCA_data, k_out, max_shift, list_recon, recon_spca, data_cwf, defocus_group, new_num_nn); % Should it be rot_f or -rot_f?
+[ shifts, corr, average, norm_variance, class_m, class_refl_m, rot_m ] = align_main_cwf_shifts( images_fl,...
+ rot_f_large, class_f_large, class_refl_f_large, sPCA_data, k_out, max_shift, list_recon, recon_spca, data_cwf, defocus_group, new_num_nn); % Should it be rot_f or -rot_f?
+
 toc_align = toc(tic_align);
 [ d_m, error_rot_m ] = check_simulation_results(class_m, class_refl_m, -rot_m, q); % should use minus sign for init class, no minus sign for VDM 
 sprintf('sPCA + new metric: Number of images with correlation > %f is %d',0.9, numel(find(d_m(d_m>=0.9))))
@@ -187,4 +189,34 @@ SNR
 %sprintf('MSE with CWF is %f',mse_cwf)
 sprintf('MSE with sPCA is %f',mse_spca)
 
-(toc./(60*60*24)) 
+(toc./(60*60*24))
+
+old_wins=zeros(10000,1);
+new_wins=zeros(10000,1);
+
+d_m1=reshape(d_m1,10000,n_nbor);
+d_f1=reshape(d_f1,10000,n_nbor);
+
+votes=zeros(10000,1);
+
+
+corrthr=0.95
+
+for i=1:10000
+old_wins(i)=numel(d_f1(d_f1(i,:)>corrthr));
+new_wins(i)=numel(d_m1(d_m1(i,:)>corrthr));
+end
+
+for i=1:10000
+if(old_wins(i)<new_wins(i))
+	votes(i)=1;
+elseif(old_wins(i)>new_wins(i))
+	votes(i)=2;
+end
+end
+
+printf('Number of wins for Mahalanobis %d',numel(votes(votes==1)))
+printf('Number of wins for old class avg %d',numel(votes(votes==2)))
+printf('Number of draws %d',numel(votes(votes==0)))
+
+ 

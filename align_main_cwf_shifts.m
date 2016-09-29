@@ -174,7 +174,7 @@ parfor j=1:length(list_recon)
 		end	
 	end	
         cwf_coeff_nn_pr{ii}=bsxfun(@times,cwf_coeff_nn_pr{ii},exp(-sqrt(-1)*(ii-1)*(-angle_j*pi/180))); % Adjusting coeffs for rotations
-        cwf_coeff_nn_pr{ii}=bsxfun(@times,cwf_coeff_nn_pr{ii},conj(phase(:,id))); % Adjusting coeffs for shifts
+        cwf_coeff_nn_pr{ii}=bsxfun(@times,cwf_coeff_nn_pr{ii},conj(phase(:,id(2:end)))); % Adjusting coeffs for shifts TODO: check id indices
     end
 
     ctfid_j=def_grp(:,j);		
