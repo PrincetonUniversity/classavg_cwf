@@ -35,8 +35,8 @@ run ~/cwf_denoise/cwf_paths.m
 tic;
 clear all;
 K = 10000; %K is the number of images
-SNR = 1/20; %SNR
-use_shifted=1;
+SNR = 1/40; %SNR
+use_shifted=0;
 
 if(use_shifted)
 load('/scratch/ARCHIVE_from_sdl6/tbhamre/cwf_class/clean_data_6454_65_shift3.mat'); % load clean centered projection images 
@@ -65,7 +65,7 @@ n_nbor = 10; %number of nearest neighbors for initial classification.
 n_nbor_large=50;
 isrann = 0;
 
-use_VDM=0;
+use_VDM=1;
 k_VDM_in = n_nbor; % number of nearest neighbors for building graph for VDM.
 VDM_flag = 0; % VDM using union rule
 k_VDM_out = n_nbor; % number of nearest neighbors search for 
@@ -146,7 +146,7 @@ k_out=n_nbor_large;
 tic_align = tic;
 new_num_nn=n_nbor;
 [data_cwf] =  data_cwf_metric(images, CTF, defocus_group, noise_v_r, ndef, def1, def2, B, lambda, use_CTF);
-[ shifts, corr, average, norm_variance, class_m, class_refl_m, rot_m ] = align_main_cwf_shifts( images_fl,...
+[ shifts, corr, average, norm_variance, class_m, class_refl_m, rot_m ] = align_main_cwf( images_fl,...
  rot_f_large, class_f_large, class_refl_f_large, sPCA_data, k_out, max_shift, list_recon, recon_spca, data_cwf, defocus_group, new_num_nn); % Should it be rot_f or -rot_f?
 
 toc_align = toc(tic_align);
@@ -194,13 +194,13 @@ sprintf('MSE with sPCA is %f',mse_spca)
 old_wins=zeros(10000,1);
 new_wins=zeros(10000,1);
 
-d_m1=reshape(d_m1,10000,n_nbor);
-d_f1=reshape(d_f1,10000,n_nbor);
+d_m1=reshape(d_m,10000,n_nbor);
+d_f1=reshape(d_f,10000,n_nbor);
 
 votes=zeros(10000,1);
 
 
-corrthr=0.95
+corrthr=0.995
 
 for i=1:10000
 old_wins(i)=numel(d_f1(d_f1(i,:)>corrthr));
@@ -215,8 +215,8 @@ elseif(old_wins(i)>new_wins(i))
 end
 end
 
-printf('Number of wins for Mahalanobis %d',numel(votes(votes==1)))
-printf('Number of wins for old class avg %d',numel(votes(votes==2)))
-printf('Number of draws %d',numel(votes(votes==0)))
+fprintf('Perc of wins for Mahalanobis %.2f',numel(votes(votes==1))/10000)
+fprintf('Perc of wins for old class avg %.2f',numel(votes(votes==2))/10000)
+fprintf('Perc of draws %.2f',numel(votes(votes==0))/10000)
 
  
