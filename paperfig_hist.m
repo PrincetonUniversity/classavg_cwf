@@ -41,7 +41,7 @@ use_shifted=0;
 if(use_shifted)
 load('/scratch/ARCHIVE_from_sdl6/tbhamre/cwf_class/clean_data_6454_65_shift3.mat'); % load clean centered projection images 
 else
-load('/scratch/ARCHIVE_from_sdl6/tbhamre/cwf_class/clean_data_2660_65.mat'); % load clean centered projection images 
+load('/scratch/ARCHIVE_from_sdl6/tbhamre/cwf_class/clean_data_6454_65.mat'); % load clean centered projection images 
 end
 disp('Loaded clean data')
 %downsampleddim=65;
@@ -65,7 +65,7 @@ n_nbor = 10; %number of nearest neighbors for initial classification.
 n_nbor_large=50;
 isrann = 0;
 
-use_VDM=1;
+use_VDM=0;
 k_VDM_in = n_nbor; % number of nearest neighbors for building graph for VDM.
 VDM_flag = 0; % VDM using union rule
 k_VDM_out = n_nbor; % number of nearest neighbors search for 
@@ -199,9 +199,9 @@ ang_df=real(acos((d_f))*180/pi);
 figure(1);
 [counts1, binCenters1] = hist(ang_dm, 500);
 [counts2, binCenters2] = hist(ang_df, 500);
-plot(binCenters1, counts1, 'r-');
+plot(binCenters1, counts1/sum(counts1), 'b-');
 hold on;
-plot(binCenters2, counts2, 'g-');
+plot(binCenters2, counts2/sum(counts2), 'g-');
 grid on;
 % Put up legend.
 legend1 = sprintf('Improved Classification, Mean = %.3f', mean(ang_dm));
@@ -209,6 +209,10 @@ legend2 = sprintf('Initial Classification, Mean = %.3f', mean(ang_df));
 legend({legend1, legend2 });
 xlabel('Angular distance in degrees')
 ylabel('Probability Density Function')
+titlstr=sprintf('SNR=1/%d',1/SNR)
+title(titlstr)
+fname=sprintf('fighist_snr1by%d.png',1/SNR)
+fpath = '~/cwf_classavg/';
+print('-depsc',fullfile(fpath, fname)); % Save as vector graphics
 
 
- 

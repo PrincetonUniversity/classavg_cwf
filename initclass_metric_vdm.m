@@ -41,7 +41,7 @@ use_shifted=0;
 if(use_shifted)
 load('/scratch/ARCHIVE_from_sdl6/tbhamre/cwf_class/clean_data_6454_65_shift3.mat'); % load clean centered projection images 
 else
-load('/scratch/ARCHIVE_from_sdl6/tbhamre/cwf_class/clean_data_2660_65.mat'); % load clean centered projection images 
+load('/scratch/ARCHIVE_from_sdl6/tbhamre/cwf_class/clean_data_6454_65.mat'); % load clean centered projection images 
 end
 disp('Loaded clean data')
 %downsampleddim=65;
