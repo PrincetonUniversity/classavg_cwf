@@ -1,0 +1,48 @@
+\begin{thebibliography}{1}
+
+\bibitem{zhao}
+Z.~Zhao and A.~Singer,
+\newblock ``Rotationally invariant image representation for viewing direction
+  classification in cryo-{EM},''
+\newblock {\em Journal of Structural Biology}, vol. 186, no. 1, pp. 153 -- 166,
+  2014.
+
+\bibitem{relion}
+Sjors~H.W. Scheres,
+\newblock ``Semi-automated selection of cryo-em particles in relion-1.3,''
+\newblock {\em Journal of Structural Biology}, vol. 189, no. 2, pp. 114 -- 122,
+  2015.
+
+\bibitem{vdm}
+A.~Singer and H.-T. Wu,
+\newblock ``Vector diffusion maps and the connection laplacian,''
+\newblock {\em Communications on Pure and Applied Mathematics}, vol. 65, no. 8,
+  pp. 1067--1144, 2012.
+
+\bibitem{cwf}
+Tejal Bhamre, Teng Zhang, and Amit Singer,
+\newblock ``Denoising and covariance estimation of single particle cryo-em
+  images,''
+\newblock {\em Journal of Structural Biology}, vol. 195, no. 1, pp. 72 -- 81,
+  2016.
+
+\bibitem{mah}
+P.~C. Mahalanobis,
+\newblock ``{On the generalised distance in statistics},''
+\newblock in {\em Proceedings National Institute of Science, India}, Apr. 1936,
+  vol.~2, pp. 49--55.
+
+\bibitem{frankbook}
+Joachim Frank,
+\newblock ``Chapter 2 - electron microscopy of macromolecular assemblies,''
+\newblock in {\em Three-Dimensional Electron Microscopy of Macromolecular
+  Assemblies}, Joachim Frank, Ed., pp. 12 -- 53. Academic Press, Burlington,
+  1996.
+
+\bibitem{frankctf}
+Joachim Frank,
+\newblock ``Chapter 3 - electron microscopy of macromolecular assemblies,''
+\newblock in {\em Three-Dimensional Electron Microscopy of Macromolecular
+  Assemblies}, Joachim Frank, Ed., p.~43. Academic Press, Burlington, 1996.
+
+\end{thebibliography}
