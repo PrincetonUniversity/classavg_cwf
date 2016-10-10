@@ -198,21 +198,22 @@ ang_df=real(acos((d_f))*180/pi);
 
 figure(1);
 clf;
-set(gca,'fontsize',18)
 [counts1, binCenters1] = hist(ang_dm, 100);
 [counts2, binCenters2] = hist(ang_df, 100);
-plot(binCenters1, counts1/sum(counts1), 'b-');
+plot(binCenters1, counts1/sum(counts1), 'b-', 'LineWidth',2);
 hold on;
-plot(binCenters2, counts2/sum(counts2), 'g-');
+plot(binCenters2, counts2/sum(counts2), 'g-', 'LineWidth',2);
 grid on;
 % Put up legend.
 legend1 = sprintf('Improved Classification, Mean = %.3f', mean(ang_dm));
 legend2 = sprintf('Initial Classification, Mean = %.3f', mean(ang_df));
-legend({legend1, legend2 });
-xlabel('Angular distance in degrees')
-ylabel('Probability Density Function')
+legend({legend1, legend2 }, 'Box', 'off','FontSize',11);
+xlabel('Angular distance in degrees','FontSize',11)
+ylabel('Probability Density Function','FontSize',11)
+
+grid off
 titlstr=sprintf('SNR=1/%d',1/SNR)
-title(titlstr)
+title(titlstr, 'FontSize',18)
 fname=sprintf('fighist_snr1by%d.png',1/SNR)
 fpath = '~/cwf_classavg/paper/';
 print('-dpng',fullfile(fpath, fname)); % Save as vector graphics
