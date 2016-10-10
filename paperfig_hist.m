@@ -35,7 +35,7 @@ run ~/cwf_denoise/cwf_paths.m
 tic;
 clear all;
 K = 10000; %K is the number of images
-SNR = 1/40; %SNR
+SNR = 1/20; %SNR
 use_shifted=0;
 
 if(use_shifted)
@@ -218,4 +218,5 @@ fname=sprintf('fighist_snr1by%d.png',1/SNR)
 fpath = '~/cwf_classavg/paper/';
 print('-dpng',fullfile(fpath, fname)); % Save as vector graphics
 
-
+fpath = sprintf('/scratch/ARCHIVE_from_sdl6/tbhamre/classavg_paper_data/mah_hist_snr1by%d.mat',1/SNR);
+save(fpath,'ang_dm', 'ang_df')
