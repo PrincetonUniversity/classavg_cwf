@@ -35,7 +35,7 @@ run ~/cwf_denoise/cwf_paths.m
 tic;
 clear all;
 K = 10000; %K is the number of images
-SNR = 1/80; %SNR
+SNR = 1/40; %SNR
 use_shifted=0;
 
 if(use_shifted)
@@ -197,6 +197,7 @@ ang_dm=real(acos((d_m))*180/pi);
 ang_df=real(acos((d_f))*180/pi);
 
 figure(1);
+clf;
 [counts1, binCenters1] = hist(ang_dm, 500);
 [counts2, binCenters2] = hist(ang_df, 500);
 plot(binCenters1, counts1/sum(counts1), 'b-');
@@ -212,7 +213,7 @@ ylabel('Probability Density Function')
 titlstr=sprintf('SNR=1/%d',1/SNR)
 title(titlstr)
 fname=sprintf('fighist_snr1by%d.png',1/SNR)
-fpath = '~/cwf_classavg/';
-print('-depsc',fullfile(fpath, fname)); % Save as vector graphics
+fpath = '~/cwf_classavg/paper/';
+print('-dpng',fullfile(fpath, fname)); % Save as vector graphics
 
 
