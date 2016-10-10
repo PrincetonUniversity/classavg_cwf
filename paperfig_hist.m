@@ -198,8 +198,9 @@ ang_df=real(acos((d_f))*180/pi);
 
 figure(1);
 clf;
-[counts1, binCenters1] = hist(ang_dm, 500);
-[counts2, binCenters2] = hist(ang_df, 500);
+set(gca,'fontsize',18)
+[counts1, binCenters1] = hist(ang_dm, 100);
+[counts2, binCenters2] = hist(ang_df, 100);
 plot(binCenters1, counts1/sum(counts1), 'b-');
 hold on;
 plot(binCenters2, counts2/sum(counts2), 'g-');
