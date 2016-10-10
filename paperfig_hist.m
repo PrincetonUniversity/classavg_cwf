@@ -35,7 +35,7 @@ run ~/cwf_denoise/cwf_paths.m
 tic;
 clear all;
 K = 10000; %K is the number of images
-SNR = 1/20; %SNR
+SNR = 1/80; %SNR
 use_shifted=0;
 
 if(use_shifted)
