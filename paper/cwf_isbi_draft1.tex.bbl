@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{zhao}
 Z.~Zhao and A.~Singer,
@@ -44,5 +44,28 @@ Joachim Frank,
 \newblock ``Chapter 3 - electron microscopy of macromolecular assemblies,''
 \newblock in {\em Three-Dimensional Electron Microscopy of Macromolecular
   Assemblies}, Joachim Frank, Ed., p.~43. Academic Press, Burlington, 1996.
+
+\bibitem{zhao1}
+Z.~Zhao and A.~Singer,
+\newblock ``Fourier {Bessel} rotational invariant eigenimages,''
+\newblock {\em J. Opt. Soc. Am. A}, vol. 30, no. 5, pp. 871--877, May 2013.
+
+\bibitem{ffbspca}
+Z.~Zhao, Y.~Shkolnisky, and A.~Singer,
+\newblock ``Fast steerable principal component analysis,''
+\newblock {\em IEEE Transactions on Computational Imaging}, vol. 2, no. 1, pp.
+  1--12, March 2016.
+
+\bibitem{rokhlin}
+Vladimir Rokhlin, Arthur Szlam, and Mark Tygert,
+\newblock ``A randomized algorithm for principal component analysis,''
+\newblock {\em SIAM Journal on Matrix Analysis and Applications}, vol. 31, no.
+  3, pp. 1100--1124, 2010.
+
+\bibitem{fastnn}
+Peter~Wilcox Jones, Andrei Osipov, and Vladimir Rokhlin,
+\newblock ``Randomized approximate nearest neighbors algorithm,''
+\newblock {\em Proceedings of the National Academy of Sciences}, vol. 108, no.
+  38, pp. 15679--15686, 2011.
 
 \end{thebibliography}

@@ -21,6 +21,7 @@
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
 \usepackage{color}
+%\usepackage[linesnumbered,ruled,vlined]{algorithm2e}% http://ctan.org/pkg/algorithm2e
 \makeatletter
 \def\BState{\State\hskip-\ALG@thistlm}
 \makeatother
@@ -85,6 +86,7 @@ the 3D structures of macromolecular complexes in their native state,
  without the need for crystallization. First, the sample, consisting of randomly oriented, nearly identical copies of a macromolecule, is frozen in a thin ice layer. An electron microscope is used to acquire top view images of the sample, in the form of a large image called a 'micrograph', from which individual particle images are picked semi-automatically. After preprocessing the acquired raw projection images, the preprocessed images are next classified, and images within each class are averaged (known in the cryo-EM community as "class averaging"), to obtain a single image per class, that enjoys a higher signal to noise ratio (SNR) than the individual images. To minimize radiation damage, cryo-EM imaging must be constrained to low electron doses, which results in a very low SNR in the acquired 2D projection images. Class averaging is thus a crucial step in the SPR pipeline; class averages are used for a preliminary inspection of the dataset, to eliminate outliers, and in semi-automated particle picking \cite{relion}. Typically, a user manually picks particles from a small number of micrographs. These are used to compute class averages, which are further used as templates to pick particles from all micrographs. A second round of class averaging needs to be performed to identify and discard outliers after this step. The resulting class averages enjoy a much higher SNR than the input raw images, thereby allowing inspection of the dataset and elimination of outliers. Class averages are used for subsequent stages of the SPR pipelines, such as viewing angle detection, and finally, determination of the 3D structure.
  
 ADD BACKGROUND WORK CLASS AVG 
+
   
 In \cite{zhao}, the authors introduced a new rotationally invariant representation to compute the distance between pairs of cryo-EM images. The images are first expanded in a steerable basis. Next, a rotationally invariant representation of the images is computed from this expansion.
 The rotationally invariant features are built by constructing the bispectrum from the expansion coefficients of the images in the steerable basis. After projecting the computed bispectrum to a lower dimensional space using a randomized PCA algorithm, the distance between images is computed as the Euclidean distance between their rotationally invariant representation. This completes the initial round of 2D classification. 
@@ -127,7 +129,6 @@ $\Delta\hat{z}=\frac{\Delta z}{[C_s \lambda]^{\frac{1}{2}}}$ is the "generalized
 
 
 \subsection{Class Averaging}
-{\color{red} SHORTEN THIS}
 The procedure for class averaging, described in \cite{zhao}, consists of 3 main steps. First, Fourier Bessel Steerable PCA is used to denoise images and estimate the 2D covariance matrix of the images and their in-plane rotations. Phase flipping is used as a CTF correction scheme. Second, the bispectrum of the expansion coefficients in the steerable basis is computed. The bispectrum is a rotationally invariant representation of images, but is typically of very high dimensionality. It is projected on to a lower dimensional subspace using a fast, randomized PCA algorithm. One way to compare the distance between images after this step is to use the normalized cross correlation. However, this method suffers from outliers in the nearest neighbor detection at very low SNR's. So, the third step uses Vector Diffusion Maps to improve the initial classification by viewing angles.
 
 
@@ -143,10 +144,12 @@ CWF was proposed in \cite{cwf} as an algorithm to (i) estimate the CTF-corrected
 \section{Mahalonobis Distance}
 Our goal is to define a metric to compare how close a any two cryo-EM images are, that is, given the CTF-affected, noisy observations for a pair of images
 \begin{eqnarray} 
-Y_i=H_i X_i + N_i, \quad \text{for} \quad i=1,2 
+Y_i=H_i X_i + N_i, \quad \text{for} \quad i=1,2 .
 %Y_2=H_2 X_2 + N_2 \nonumber,
 \end{eqnarray}
-we define a metric that gives a notion of distance between $X_1$ and $X_2$. In our statistical model, the underlying clean images $X_1, X_2, \ldots X_n$ (where $n$ is the total number of images) are assumed to be independent, identically distributed (i.i.d.) samples drawn from a Gaussian distribution. Further, we assume that the noise in our model is additive white Gaussian noise.
+Due to the numerous zero crossings of the CTF, CTF correction is a challenging problem. A popular albeit heuristic approach for CTF correction is 'phase flipping', which involves simply inverting the sign of the Fourier coefficients. This corrects for the phase inversion caused due to the CTF, but not for amplitude correction. In \cite{cwf}, the authors introduced a new approach for denoising and CTF correction in a single step, called CWF. When comparing distances between cryo-EM images, one must take into account that different images belong to different defocus groups, that is, they are affected by different CTF's. Since phase flipping is suboptimal as a method for CTF correction, computing nearest neighbors using the Euclidean distance between features constructed from phase flipped, denoised images can also suffer from incorrectly identified neighbors. The main motivation of this paper is to introduce a Mahalanobis distance for cryo-EM images, as a metric to compute the distance between images belonging to different defocus groups. Moreover, we propose to use this notion of distance to improve the existing class averaging pipeline in \cite{zhao1}.
+
+We define a metric that gives a notion of distance between two underlying clean images $X_1$ and $X_2$. In our statistical model, the underlying clean images $X_1, X_2, \ldots X_n$ (where $n$ is the total number of images) are assumed to be independent, identically distributed (i.i.d.) samples drawn from a Gaussian distribution. Further, we assume that the noise in our model is additive white Gaussian noise.
 \begin{eqnarray} 
 X_1, X_2  \sim N( {\mu},\Sigma) \nonumber \\ 
 N_1, N_2  \sim N(0,{\sigma}^2 I_n )
@@ -223,25 +226,30 @@ So we can define our metric after taking the logarithm on both sides of eqn.(\re
 
 \section{Algorithm for Class Averaging}
 \begin{algorithm}
-\caption{Improved Class Averaging}\label{euclid}
+\caption{Improved Class Averaging }\label{euclid}
 \begin{algorithmic}[1]
-\Procedure{Initial Classification}{}
+\Procedure{Initial Classification \cite{zhao1}}{}
+\State Image compression and denoising: compute Fourier Bessel steerable basis for images \cite{ffbspca}
+\State Rotationally invariant features: compute the bispectrum from denoised coefficients in the steerable basis
+\State Randomized PCA\cite{rokhlin} of high dimensional feature vectors from the bispectrum
+\State Initial nearest neighbor classification and alignment using brute force or fast randomized approximate nearest neighbor search \cite{fastnn}
+\State (Optional) Improve nearest neighbor classification using Vector Diffusion Maps \cite{vdm}
+\State Obtain a list of $S$ nearest neighbors for each image
 \EndProcedure
 \Procedure{Classification using Mahalonobis Distance}{}
-\EndProcedure
-\Procedure{Alignment and Averaging}{}
+\State Compute the quantities $\alpha, \beta, L, M$ using Covariance Wiener Filtering (CWF) \cite{cwf}
+\State For each image and its $S$ aligned nearest neighbors, compute the Mahalanobis distance between the image and neighbors
+\State Rank $S$ neighbors according to the Mahalanobis distance, and choose the top $K$ as nearest neighbors
 \EndProcedure
 \end{algorithmic}
 \end{algorithm}
+
 
 \section{Numerical experiments}
 Note that $\alpha$ and $\beta$ defined above a
 re denoised images obtained from CWF after deconvolution. In practice, we use $\alpha$, $\beta$, $L$, $M$ projected onto the subspace spanned by the principal components (of the respective angular frequency block).
 We obtain an initial list of nearest neighbors for eacg image using the Initial Alignment procedure in ASPIRE (steerable PCA + bispectum). This list is then refined using the metric defined above.
 We test this method on simulated projection images and observe an improvement in the nearest neighbors detected. 
-
-
-\subsection{Synthetic data}
 We perform experiments on a synthetic dataset consisting of projection images generated 
 
 \begin{table}[]
@@ -258,6 +266,18 @@ SNR   & New        & Old        & New          & Old         \\ \cline{2-5}
 1/100 & 17262      & 14431      & 16057        & 13706        \\ \cline{2-5} 
 \end{tabular}
 \end{table}
+
+
+\begin{figure}[!htbp]
+\begin{center}
+\begin{tabular}{cc}
+\includegraphics[width=.49\columnwidth]{fighist_snr1by20.png} & \includegraphics[width=.49\columnwidth]{fighist_snr1by40.png} \\
+\includegraphics[width=.49\columnwidth]{fighist_snr1by60.png} & \includegraphics[width=.49\columnwidth]{fighist_snr1by80.png}
+\end{tabular}
+\end{center}
+\caption{The estimated probability density function of the angular distance (in degrees) between images classified into the same class by 1) Initial Classification and 2) Improved Classification using the Mahalanobis distance at different SNR's.}
+\label{fig:sedov-1d-llf}
+\end{figure}
 
 \section{Future Work}
 \section{Conclusion}
