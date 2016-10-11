@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.8.14)  10 OCT 2016 22:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.8.14)  11 OCT 2016 11:15
 entering extended mode
 **./cwf_isbi_draft1.tex.tex
 (cwf_isbi_draft1.tex.tex
@@ -404,41 +404,16 @@ LaTeX Font Warning: Command \small invalid in math mode on input line 171.
 LaTeX Font Warning: Command \small invalid in math mode on input line 174.
 
 
-Overfull \hbox (19.48227pt too wide) detected at line 175
-[]
- []
-
-
 LaTeX Font Warning: Command \small invalid in math mode on input line 177.
-
-
-Overfull \hbox (19.48227pt too wide) detected at line 178
-[]
- []
 
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 180.
 
 
-Overfull \hbox (3.5638pt too wide) detected at line 181
-[]
- []
-
-
 LaTeX Font Warning: Command \small invalid in math mode on input line 183.
 
 
-Overfull \hbox (3.5638pt too wide) detected at line 184
-[]
- []
-
-
 LaTeX Font Warning: Command \small invalid in math mode on input line 203.
-
-
-Overfull \hbox (6.5228pt too wide) in paragraph at lines 216--216
-[] 
- []
 
 
 Underfull \hbox (badness 1748) in paragraph at lines 244--245
@@ -446,41 +421,44 @@ Underfull \hbox (badness 1748) in paragraph at lines 244--245
 ono-bis
  []
 
+[3]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 257.
+               Default added (so using `tbp') on input line 258.
 
-<fighist_snr1by20.png, id=20, 578.16pt x 433.62pt>
+<fighist_snr1by20.png, id=31, 578.16pt x 433.62pt>
 File: fighist_snr1by20.png Graphic file (type png)
  <use fighist_snr1by20.png>
-Package pdftex.def Info: fighist_snr1by20.png used on input line 276.
+Package pdftex.def Info: fighist_snr1by20.png used on input line 277.
 (pdftex.def)             Requested size: 119.90125pt x 89.92485pt.
 
-<fighist_snr1by40.png, id=21, 578.16pt x 433.62pt>
+<fighist_snr1by40.png, id=32, 578.16pt x 433.62pt>
 File: fighist_snr1by40.png Graphic file (type png)
  <use fighist_snr1by40.png>
-Package pdftex.def Info: fighist_snr1by40.png used on input line 276.
+Package pdftex.def Info: fighist_snr1by40.png used on input line 277.
 (pdftex.def)             Requested size: 119.90125pt x 89.92485pt.
 
-<fighist_snr1by60.png, id=22, 578.16pt x 433.62pt>
+<fighist_snr1by60.png, id=33, 578.16pt x 433.62pt>
 File: fighist_snr1by60.png Graphic file (type png)
  <use fighist_snr1by60.png>
-Package pdftex.def Info: fighist_snr1by60.png used on input line 277.
+Package pdftex.def Info: fighist_snr1by60.png used on input line 278.
 (pdftex.def)             Requested size: 119.90125pt x 89.92485pt.
 
-<fighist_snr1by80.png, id=23, 578.16pt x 433.62pt>
+<fighist_snr1by80.png, id=34, 578.16pt x 433.62pt>
 File: fighist_snr1by80.png Graphic file (type png)
  <use fighist_snr1by80.png>
-Package pdftex.def Info: fighist_snr1by80.png used on input line 277.
+Package pdftex.def Info: fighist_snr1by80.png used on input line 278.
 (pdftex.def)             Requested size: 119.90125pt x 89.92485pt.
 
-Overfull \hbox (19.1088pt too wide) in paragraph at lines 275--279
+Overfull \hbox (19.1088pt too wide) in paragraph at lines 276--280
  [] 
  []
 
-(cwf_isbi_draft1.tex.bbl [3] [4 <./fighist_snr1by20.png (PNG copy)> <./fighist_
-snr1by40.png (PNG copy)> <./fighist_snr1by60.png (PNG copy)> <./fighist_snr1by8
-0.png (PNG copy)>]
+(cwf_isbi_draft1.tex.bbl
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [4 <./fighist_snr1by20.png (PNG copy)> <./fighist_snr1by40.png (PNG copy)> <./
+fighist_snr1by60.png (PNG copy)> <./fighist_snr1by80.png (PNG copy)>]
 Underfull \hbox (badness 1642) in paragraph at lines 66--70
 []\OT1/ptm/m/n/10 Peter Wilcox Jones, An-drei Os-ipov, and Vladimir
  []
@@ -495,8 +473,8 @@ LaTeX Font Warning: Size substitutions with differences
  ) 
 Here is how much of TeX's memory you used:
  4452 strings out of 493335
- 65440 string characters out of 3136683
- 144114 words of memory out of 3000000
+ 65431 string characters out of 3136683
+ 143114 words of memory out of 3000000
  7875 multiletter control sequences out of 15000+200000
  30455 words of font info for 83 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -520,7 +498,7 @@ lic/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public
 /utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pf
 b><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Progr
 am Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on cwf_isbi_draft1.tex.pdf (5 pages, 487668 bytes).
+Output written on cwf_isbi_draft1.tex.pdf (5 pages, 491036 bytes).
 PDF statistics:
  100 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
