@@ -17,6 +17,7 @@ figure(1);
 %plot(x,CTF(55,55:end,1),'b-','LineWidth',2, x,CTF(55,55:end,2),'r-','LineWidth',2, x,CTF(55,55:end,3),'g-','LineWidth',2 );
 plot(x,CTF(floor(L/2)+1,floor(L/2)+1:end,1),'b-', x,CTF(floor(L/2)+1,floor(L/2)+1:end,2),'r-', x,CTF(floor(L/2)+1,floor(L/2)+1:end,3),'g-','LineWidth',1.5 );
 axis tight
+pbaspect([2 1 1])
 legend({'def=1\mum', 'def=1.3\mum', 'def=1.6\mum'},'location','NorthWest', 'Box', 'off','FontSize',9);
 xlabel('x','FontSize',11);
 ylabel('Contrast','FontSize',11);
