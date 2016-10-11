@@ -158,30 +158,30 @@ N_1, N_2  \sim N(0,{\sigma}^2 I_n )
 We denote the covariance of $Y_1$ and $Y_2$ by $K_1$ and $K_2$.
 \begin{eqnarray}
 % E(Y_1)=H_1 \mu \\ 
-Cov(Y_i) = H_i \Sigma {H_i}^T + {\sigma}^2 I_n = K_i , \quad \text{for} \quad i=1,2 
+Cov(Y_i) = H_i \Sigma {H_i}^T + {\sigma}^2 I_n = K_i,\quad \text{for} \quad i=1,2 
 %E(Y_2)=H_2 \mu \\
 %Cov(Y_2) = H_2 \Sigma {H_2}^T + {\sigma}^2 I_n = K_2 
 \end{eqnarray}
 Using the Guassian property, we have the following probability density functions (pdf)
 \begin{equation}
 \small{
-f_{X_1}(x_1) = P \exp\{-\frac{1}{2}{(x_1-\mu)}^T {\Sigma}^{-1}(x_1-\mu)\} }
+f_{X_i}(x_i) = P \exp\{-\frac{1}{2}{(x_i-\mu)}^T {\Sigma}^{-1}(x_i-\mu)\},\tiny{\quad\text{for}\quad i=1,2 }}
 \end{equation}
+%\begin{equation}
+%\small{f_{X_2}(x_2) = P \exp\{-\frac{1}{2}{(x_2-\mu)}^T {\Sigma}^{-1}(x_2-\mu)\} }
+%\end{equation}
 \begin{equation}
-\small{f_{X_2}(x_2) = P \exp\{-\frac{1}{2}{(x_2-\mu)}^T {\Sigma}^{-1}(x_2-\mu)\} }
+\small{f_N(z_i) = Q \exp\{-\frac{1}{2}{(z_i)}^T \frac{1}{\sigma^2}(z_i)\}, z_i=y_i-H_1 x_i,\tiny{\quad\text{for}\quad i=1,2 }}
 \end{equation}
+%\begin{equation}
+%\small{f_N(z_2) = Q \exp\{-\frac{1}{2}{(z_2)}^T \frac{1}{\sigma^2} (z_2)\}, z_2=y_2-H_2 x_2}
+%\end{equation}
 \begin{equation}
-\small{f_N(z_1) = Q \exp\{-\frac{1}{2}{(z_1)}^T \frac{1}{\sigma^2}(z_1)\}, z_1=y_1-H_1 x_1}
+\small{f_{Y_i}(y_i) = R \exp\{-\frac{1}{2}{(y_i-H_i\mu)}^T {K_1}^{-1}(y_i-H_i\mu)\},\tiny{\quad\text{for}\quad i=1,2 } }
 \end{equation}
-\begin{equation}
-\small{f_N(z_2) = Q \exp\{-\frac{1}{2}{(z_2)}^T \frac{1}{\sigma^2} (z_2)\}, z_2=y_2-H_2 x_2}
-\end{equation}
-\begin{equation}
-\small{f_{Y_1}(y_1) = R \exp\{-\frac{1}{2}{(y_1-H_1\mu)}^T {K_1}^{-1}(y_1-H_1\mu)\}}
-\end{equation}
-\begin{equation}
-\small{f_{Y_2}(y_2) = R \exp\{-\frac{1}{2}{(y_2-H_2\mu)}^T {K_2}^{-1}(y_2-H_2\mu)\}}
-\end{equation}
+%\begin{equation}
+%\small{f_{Y_2}(y_2) = R \exp\{-\frac{1}{2}{(y_2-H_2\mu)}^T {K_2}^{-1}(y_2-H_2\mu)\}}
+%\end{equation}
 where $P=\frac{1}{({2\pi})^{\frac{n}{2}}{|\Sigma|}^{\frac{1}{2}}}$, $Q=\frac{1}{({2\pi})^{\frac{n}{2}}\sigma^n}$, and $R=\frac{1}{({2\pi})^{\frac{n}{2}} {|K_1|}^{\frac{1}{2}}}$.
 \begin{equation}
  \left[\begin{array}{c} X_1 \\ Y_1 \end{array}\right] = 
@@ -227,7 +227,7 @@ So we can define our metric after taking the logarithm on both sides of eqn.(\re
 
 \section{Algorithm for Improved Class Averaging using Mahalanobis Distance}
 
-We propose an improved class averaging algorithm that incorporates the Mahalanobis distance. The quantities $\alpha$, $\beta$, $L$, $M$ are computed for each image and defocus group respectively, using CWF \cite{cwf}. The estimated covariance using CWF is block diagonal in the Fourier Bessel basis. In practice, we use $\alpha$, $\beta$, $L$, $M$ projected onto the subspace spanned by the principal components (for angular frequency block). We obtain an initial list of $S$ nearest neighbors for each image using the Initial Classification algorithm in \cite{zhao1}. Then, for the list of nearest neighbors corresponding to each image, the Mahalanobis distance is computed and used to pick the closest $K$ nearest neighbors, where $K<S$. The details of the algorithm are listed in Algorithm \ref{alg:classav}.
+We propose an improved class averaging algorithm that incorporates the Mahalanobis distance. The quantities $\alpha$, $\beta$, $L$, $M$ are computed for each image and defocus group respectively, using CWF \cite{cwf}. The estimated covariance using CWF is block diagonal in the Fourier Bessel basis. In practice, we use $\alpha$, $\beta$, $L$, $M$ projected onto the subspace spanned by the principal components (for angular frequency block). We obtain an initial list of $S$ nearest neighbors for each image using the Initial Classification algorithm in \cite{zhao1}. Then, for the list of nearest neighbors corresponding to each image, the Mahalanobis distance is computed and used to pick the closest $K$ nearest neighbors, where $K<S$. The details of the algorithm are listed in Algorithm \ref{alg:classav}. 
 
 \begin{algorithm}
 \caption{Improved Class Averaging }
@@ -238,7 +238,7 @@ We propose an improved class averaging algorithm that incorporates the Mahalanob
 \State Rotationally invariant features: compute the bispectrum from denoised coefficients in the steerable basis
 \State Randomized PCA\cite{rokhlin} of high dimensional feature vectors from the bispectrum
 \State Initial nearest neighbor classification and alignment using brute force or fast randomized approximate nearest neighbor search \cite{fastnn}
-\State (Optional) Improve nearest neighbor classification using Vector Diffusion Maps \cite{vdm}
+\State (Optional) Improve nearest neighbor classification using Vector Diffusion Maps (VDM) \cite{vdm}
 \State Obtain a list of $S$ nearest neighbors for each image
 \EndProcedure
 \Procedure{Classification using Mahalonobis Distance}{}
@@ -264,7 +264,7 @@ using 10000 images, $K=10$ and $S=50$.
 \begin{tabular}{lllll}
       & \multicolumn{2}{l}{VDM} & \multicolumn{2}{l}{No VDM} \\ \cline{2-5} 
 SNR   & New        & Old        & New          & Old         \\ \cline{2-5} 
-1/40 & 58361          & 56758          & 56831            & 49347       \\
+%1/40 & 58361          & 56758          & 56831            & 49347       \\
 1/60  & 34965          & 32113          & 34537            & 29219       \\
 1/100 & 17262      & 14431      & 16057        & 13706        \\ \cline{2-5} 
 \end{tabular}
@@ -283,6 +283,8 @@ SNR   & New        & Old        & New          & Old         \\ \cline{2-5}
 \end{figure}
 
 \section{Future Work}
+The Mahalonobis distance proposed here can be used as a metric for any manifold learning procedure \cite{intgeom, nlica} such as diffusion maps \cite{vdm, difmap}, with or without missing data.
+
 \section{Conclusion}
 
 

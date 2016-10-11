@@ -68,4 +68,23 @@ Peter~Wilcox Jones, Andrei Osipov, and Vladimir Rokhlin,
 \newblock {\em Proceedings of the National Academy of Sciences}, vol. 108, no.
   38, pp. 15679--15686, 2011.
 
+\bibitem{intgeom}
+Ronen Talmon and Ronald~R. Coifman,
+\newblock ``Empirical intrinsic geometry for nonlinear modeling and time series
+  filtering,''
+\newblock {\em Proceedings of the National Academy of Sciences}, vol. 110, no.
+  31, pp. 12535--12540, 2013.
+
+\bibitem{nlica}
+Amit Singer and Ronald~R. Coifman,
+\newblock ``Non-linear independent component analysis with diffusion maps,''
+\newblock {\em Applied and Computational Harmonic Analysis}, vol. 25, no. 2,
+  pp. 226 -- 239, 2008.
+
+\bibitem{difmap}
+Ronald~R. Coifman and Stéphane Lafon,
+\newblock ``Diffusion maps,''
+\newblock {\em Applied and Computational Harmonic Analysis}, vol. 21, no. 1,
+  pp. 5 -- 30, 2006.
+
 \end{thebibliography}

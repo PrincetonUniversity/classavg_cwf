@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.8.14)  11 OCT 2016 11:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.8.14)  11 OCT 2016 14:51
 entering extended mode
 **./cwf_isbi_draft1.tex.tex
 (cwf_isbi_draft1.tex.tex
@@ -348,6 +348,9 @@ Overfull \hbox (44.38559pt too wide) in paragraph at lines 124--125
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 167.
 
+
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 168.
+
 LaTeX Font Info:    Calculating math sizes for size <> on input line 169.
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <> not available
@@ -398,19 +401,21 @@ LaTeX Font Warning: Font shape `U/lasy/m/n' in size <0.5> not available
 (Font)              size <5> substituted on input line 169.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 171.
-
-
 LaTeX Font Warning: Command \small invalid in math mode on input line 174.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 177.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 174.
 
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 180.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 183.
+LaTeX Font Warning: Command \tiny invalid in math mode on input line 180.
+
+
+Overfull \hbox (3.14456pt too wide) detected at line 181
+[]
+ []
 
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 203.
@@ -454,15 +459,14 @@ Overfull \hbox (19.1088pt too wide) in paragraph at lines 276--280
  [] 
  []
 
-(cwf_isbi_draft1.tex.bbl
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [4 <./fighist_snr1by20.png (PNG copy)> <./fighist_snr1by40.png (PNG copy)> <./
-fighist_snr1by60.png (PNG copy)> <./fighist_snr1by80.png (PNG copy)>]
+(cwf_isbi_draft1.tex.bbl [4 <./fighist_snr1by20.png (PNG copy)> <./fighist_snr1
+by40.png (PNG copy)> <./fighist_snr1by60.png (PNG copy)> <./fighist_snr1by80.pn
+g (PNG copy)>]
 Underfull \hbox (badness 1642) in paragraph at lines 66--70
 []\OT1/ptm/m/n/10 Peter Wilcox Jones, An-drei Os-ipov, and Vladimir
  []
 
+Missing character: There is no é in font ptmr7t!
 ) [5
 
 ] (cwf_isbi_draft1.tex.aux)
@@ -472,11 +476,11 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 4452 strings out of 493335
- 65431 string characters out of 3136683
- 143114 words of memory out of 3000000
- 7875 multiletter control sequences out of 15000+200000
- 30455 words of font info for 83 fonts, out of 3000000 for 9000
+ 4456 strings out of 493335
+ 65461 string characters out of 3136683
+ 142126 words of memory out of 3000000
+ 7878 multiletter control sequences out of 15000+200000
+ 31533 words of font info for 84 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  42i,12n,39p,1676b,379s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
@@ -498,7 +502,7 @@ lic/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public
 /utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pf
 b><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Progr
 am Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on cwf_isbi_draft1.tex.pdf (5 pages, 491036 bytes).
+Output written on cwf_isbi_draft1.tex.pdf (5 pages, 492833 bytes).
 PDF statistics:
  100 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
