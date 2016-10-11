@@ -20,4 +20,4 @@ axis tight
 legend({'def=1\mum', 'def=1.3\mum', 'def=1.6\mum'},'location','NorthWest', 'Box', 'off','FontSize',9);
 xlabel('x','FontSize',11);
 ylabel('Contrast','FontSize',11);
-print('ctfeg_fig', '-dpng', '-r300'); %<-Save as PNG with 300 DPI
+print('~/cwf_classavg/paper/ctfeg_fig', '-dpng', '-r300'); %<-Save as PNG with 300 DPI
