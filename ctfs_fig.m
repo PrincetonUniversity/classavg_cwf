@@ -13,7 +13,9 @@ hatI_curr=ones(109,109,10);
 
 x=[0:54];
 figure(1);
-plot(x,CTF(55,55:end,1),'b-',x,CTF(55,55:end,2),'r-',x,CTF(55,55:end,3),'g-');
-legend('def=1\mum', 'def=1.3\mum', 'def=1.6\mum', 'Location', 'NorthWest');
-xlabel('x');
+%plot(x,CTF(55,55:end,1),'b-','LineWidth',2, x,CTF(55,55:end,2),'r-','LineWidth',2, x,CTF(55,55:end,3),'g-','LineWidth',2 );
+plot(x,CTF(55,55:end,1),'b-', x,CTF(55,55:end,2),'r-', x,CTF(55,55:end,3),'g-','LineWidth',1.5 );
+legend({'def=1\mum', 'def=1.3\mum', 'def=1.6\mum'},'location','NorthWest', 'Box', 'off','FontSize',9);
+xlabel('x','FontSize',11);
+ylabel('Contrast','FontSize',11);
 print('ctfeg_fig', '-dpng', '-r300'); %<-Save as PNG with 300 DPI
