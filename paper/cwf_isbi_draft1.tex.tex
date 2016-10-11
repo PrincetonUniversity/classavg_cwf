@@ -199,20 +199,21 @@ Using conditional distributions
   f_{X_2|Y_2}(x_2|y_2) \sim N(\beta, M)
  \end{equation}
 where 
+\begin{equation}
 \small{
-$\begin{array}{l}\alpha = \mu + \Sigma H_1^T (H_1 \Sigma H_1^T + \sigma^2 I)^{-1} (y_1 - H_1 \mu) \\ L = \Sigma - \Sigma H_1^T (H_1 \Sigma H_1^T + \sigma^2 I)^{-1} H_1 \Sigma \\ \beta = \mu + \Sigma H_2^T (H_2 \Sigma H_2^T + \sigma^2 I)^{-1} (y_2 - H_2 \mu) \\ M = \Sigma - \Sigma H_2^T (H_2 \Sigma H_2^T + \sigma^2 I)^{-1} H_2 \Sigma        \end{array}$}        
+\begin{array}{l}\alpha = \mu + \Sigma H_1^T (H_1 \Sigma H_1^T + \sigma^2 I)^{-1} (y_1 - H_1 \mu) \\ L = \Sigma - \Sigma H_1^T (H_1 \Sigma H_1^T + \sigma^2 I)^{-1} H_1 \Sigma \\ \beta = \mu + \Sigma H_2^T (H_2 \Sigma H_2^T + \sigma^2 I)^{-1} (y_2 - H_2 \mu) \\ M = \Sigma - \Sigma H_2^T (H_2 \Sigma H_2^T + \sigma^2 I)^{-1} H_2 \Sigma        \end{array}}   .
+\end{equation}
 So
 \begin{equation}
 P(x_1 - x_2|y_1, y_2) \sim N(\alpha-\beta, L+M)
 \end{equation}
 Let $X_1 - X_2 = X_3$. Then
-\small{
 \begin{align}
 &P(||x_3||_{\infty} < \epsilon|y_1,y_2)   \nonumber
 										 =	 P(||x_3||_{\infty} < \epsilon|y_1,y_2)\\ \nonumber
-										 &=   \frac{1}{(2 \pi)^{\frac{n}{2}} |L+M|^ \frac{1}{2}} \times \\ 
-										 & \int_{-\epsilon }^{\epsilon}\exp \{ -\frac{1}{2}(x_3 - (\alpha -\beta)^T)(L+M)^{-1}(x_3 - (\alpha -\beta)\}dx_3 
-\end{align}}
+										&=   \frac{1}{(2 \pi)^{\frac{n}{2}} |L+M|^ \frac{1}{2}} \times \\ 
+										& \int_{-\epsilon }^{\epsilon}\exp \{ -\frac{1}{2}(x_3 - (\alpha -\beta)^T)(L+M)^{-1}(x_3 - (\alpha -\beta)\}dx_3 
+\end{align}
 For small $\epsilon$ this is
 \begin{equation}
 = \frac{(2 \epsilon)^n}{(2 \pi)^{\frac{n}{2}} |L + M|^{\frac{1}{2}}} \exp\{-\frac{1}{2}(\alpha - \beta)^T(L+M)^{-1}(\alpha -\beta)\} 
@@ -224,9 +225,13 @@ So we can define our metric after taking the logarithm on both sides of eqn.(\re
 \end{equation}
 
 
-\section{Algorithm for Class Averaging}
+\section{Algorithm for Improved Class Averaging using Mahalanobis Distance}
+
+We propose an improved class averaging algorithm that incorporates the Mahalanobis distance. The quantities $\alpha$, $\beta$, $L$, $M$ are computed for each image and defocus group respectively, using CWF \cite{cwf}. The estimated covariance using CWF is block diagonal in the Fourier Bessel basis. In practice, we use $\alpha$, $\beta$, $L$, $M$ projected onto the subspace spanned by the principal components (for angular frequency block). We obtain an initial list of $S$ nearest neighbors for each image using the Initial Classification algorithm in \cite{zhao1}. Then, for the list of nearest neighbors corresponding to each image, the Mahalanobis distance is computed and used to pick the closest $K$ nearest neighbors, where $K<S$. The details of the algorithm are listed in Algorithm \ref{alg:classav}.
+
 \begin{algorithm}
-\caption{Improved Class Averaging }\label{euclid}
+\caption{Improved Class Averaging }
+\label{alg:classav}
 \begin{algorithmic}[1]
 \Procedure{Initial Classification \cite{zhao1}}{}
 \State Image compression and denoising: compute Fourier Bessel steerable basis for images \cite{ffbspca}
@@ -246,11 +251,8 @@ So we can define our metric after taking the logarithm on both sides of eqn.(\re
 
 
 \section{Numerical experiments}
-Note that $\alpha$ and $\beta$ defined above a
-re denoised images obtained from CWF after deconvolution. In practice, we use $\alpha$, $\beta$, $L$, $M$ projected onto the subspace spanned by the principal components (of the respective angular frequency block).
-We obtain an initial list of nearest neighbors for eacg image using the Initial Alignment procedure in ASPIRE (steerable PCA + bispectum). This list is then refined using the metric defined above.
-We test this method on simulated projection images and observe an improvement in the nearest neighbors detected. 
-We perform experiments on a synthetic dataset consisting of projection images generated 
+
+We test the improved class averaging algorithm on a synthetic dataset that consists of projection images generated from the volume of P. falciparum 80S ribosome bound to E-tRNA, available on the Electron Microscopy Data Bank (EMDB) as EMDB 6454. For the results described here, we used $10000$ projection images of size $65 \times 65$ that were affected by the various CTF's and additive white Gaussian noise. The images were divided into $20$ defocus groups.
 
 \begin{table}[]
 \centering

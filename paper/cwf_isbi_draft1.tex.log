@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.8.14)  10 OCT 2016 21:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.8.14)  10 OCT 2016 22:41
 entering extended mode
 **./cwf_isbi_draft1.tex.tex
 (cwf_isbi_draft1.tex.tex
@@ -337,181 +337,192 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
 <ctfeg_fig.png, id=9, 578.16pt x 433.62pt>
 File: ctfeg_fig.png Graphic file (type png)
  <use ctfeg_fig.png>
-Package pdftex.def Info: ctfeg_fig.png used on input line 123.
+Package pdftex.def Info: ctfeg_fig.png used on input line 124.
 (pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
 
-Overfull \hbox (44.38559pt too wide) in paragraph at lines 123--124
+Overfull \hbox (44.38559pt too wide) in paragraph at lines 124--125
  [] 
  []
 
 [2 <./ctfeg_fig.png (PNG copy)>]
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 166.
+LaTeX Font Warning: Command \small invalid in math mode on input line 167.
 
-LaTeX Font Info:    Calculating math sizes for size <> on input line 168.
+LaTeX Font Info:    Calculating math sizes for size <> on input line 169.
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <> not available
-(Font)              size <5> substituted on input line 168.
+(Font)              size <5> substituted on input line 169.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 168.
+(Font)              size <5> substituted on input line 169.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 168.
+(Font)              size <5> substituted on input line 169.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <> not available
-(Font)              size <5> substituted on input line 168.
+(Font)              size <5> substituted on input line 169.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <0.7> not available
-(Font)              size <5> substituted on input line 168.
+(Font)              size <5> substituted on input line 169.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <0.5> not available
-(Font)              size <5> substituted on input line 168.
+(Font)              size <5> substituted on input line 169.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <> not available
-(Font)              size <5> substituted on input line 168.
+(Font)              size <5> substituted on input line 169.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 168.
+(Font)              size <5> substituted on input line 169.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 168.
+(Font)              size <5> substituted on input line 169.
 
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <> not available
-(Font)              size <5> substituted on input line 168.
+(Font)              size <5> substituted on input line 169.
 
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 168.
+(Font)              size <5> substituted on input line 169.
 
 
 LaTeX Font Warning: Font shape `U/lasy/m/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 168.
+(Font)              size <5> substituted on input line 169.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 170.
+LaTeX Font Warning: Command \small invalid in math mode on input line 171.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 173.
+LaTeX Font Warning: Command \small invalid in math mode on input line 174.
 
 
-Overfull \hbox (19.48227pt too wide) detected at line 174
+Overfull \hbox (19.48227pt too wide) detected at line 175
 []
  []
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 176.
+LaTeX Font Warning: Command \small invalid in math mode on input line 177.
 
 
-Overfull \hbox (19.48227pt too wide) detected at line 177
+Overfull \hbox (19.48227pt too wide) detected at line 178
 []
  []
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 179.
+LaTeX Font Warning: Command \small invalid in math mode on input line 180.
 
 
-Overfull \hbox (3.5638pt too wide) detected at line 180
+Overfull \hbox (3.5638pt too wide) detected at line 181
 []
  []
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 182.
+LaTeX Font Warning: Command \small invalid in math mode on input line 183.
 
 
-Overfull \hbox (3.5638pt too wide) detected at line 183
+Overfull \hbox (3.5638pt too wide) detected at line 184
 []
  []
 
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 226.
 
-Underfull \hbox (badness 1748) in paragraph at lines 238--239
+LaTeX Font Warning: Command \small invalid in math mode on input line 203.
+
+
+Overfull \hbox (6.5228pt too wide) in paragraph at lines 216--216
+[] 
+ []
+
+
+Underfull \hbox (badness 1748) in paragraph at lines 244--245
 []\OT1/ptm/b/n/10 pro-ce-dure \OT1/ptm/m/sc/10 Clas-si-fi-ca-tion us-ing Ma-hal
 ono-bis
  []
 
-[3]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 254.
+               Default added (so using `tbp') on input line 257.
 
-<fighist_snr1by20.png, id=32, 578.16pt x 433.62pt>
+<fighist_snr1by20.png, id=20, 578.16pt x 433.62pt>
 File: fighist_snr1by20.png Graphic file (type png)
  <use fighist_snr1by20.png>
-Package pdftex.def Info: fighist_snr1by20.png used on input line 273.
+Package pdftex.def Info: fighist_snr1by20.png used on input line 276.
 (pdftex.def)             Requested size: 119.90125pt x 89.92485pt.
 
-<fighist_snr1by40.png, id=33, 578.16pt x 433.62pt>
+<fighist_snr1by40.png, id=21, 578.16pt x 433.62pt>
 File: fighist_snr1by40.png Graphic file (type png)
  <use fighist_snr1by40.png>
-Package pdftex.def Info: fighist_snr1by40.png used on input line 273.
+Package pdftex.def Info: fighist_snr1by40.png used on input line 276.
 (pdftex.def)             Requested size: 119.90125pt x 89.92485pt.
 
-<fighist_snr1by60.png, id=34, 578.16pt x 433.62pt>
+<fighist_snr1by60.png, id=22, 578.16pt x 433.62pt>
 File: fighist_snr1by60.png Graphic file (type png)
  <use fighist_snr1by60.png>
-Package pdftex.def Info: fighist_snr1by60.png used on input line 274.
+Package pdftex.def Info: fighist_snr1by60.png used on input line 277.
 (pdftex.def)             Requested size: 119.90125pt x 89.92485pt.
 
-<fighist_snr1by80.png, id=35, 578.16pt x 433.62pt>
+<fighist_snr1by80.png, id=23, 578.16pt x 433.62pt>
 File: fighist_snr1by80.png Graphic file (type png)
  <use fighist_snr1by80.png>
-Package pdftex.def Info: fighist_snr1by80.png used on input line 274.
+Package pdftex.def Info: fighist_snr1by80.png used on input line 277.
 (pdftex.def)             Requested size: 119.90125pt x 89.92485pt.
 
-Overfull \hbox (19.1088pt too wide) in paragraph at lines 272--276
+Overfull \hbox (19.1088pt too wide) in paragraph at lines 275--279
  [] 
  []
 
-(cwf_isbi_draft1.tex.bbl) [4 <./fighist_snr1by20.png (PNG copy)> <./fighist_snr
-1by40.png (PNG copy)> <./fighist_snr1by60.png (PNG copy)> <./fighist_snr1by80.p
-ng (PNG copy)>] (cwf_isbi_draft1.tex.aux)
+(cwf_isbi_draft1.tex.bbl [3] [4 <./fighist_snr1by20.png (PNG copy)> <./fighist_
+snr1by40.png (PNG copy)> <./fighist_snr1by60.png (PNG copy)> <./fighist_snr1by8
+0.png (PNG copy)>]
+Underfull \hbox (badness 1642) in paragraph at lines 66--70
+[]\OT1/ptm/m/n/10 Peter Wilcox Jones, An-drei Os-ipov, and Vladimir
+ []
+
+) [5
+
+] (cwf_isbi_draft1.tex.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 4.5pt have occurred.
 
  ) 
 Here is how much of TeX's memory you used:
- 4455 strings out of 493335
- 65467 string characters out of 3136683
- 139114 words of memory out of 3000000
- 7877 multiletter control sequences out of 15000+200000
- 32081 words of font info for 85 fonts, out of 3000000 for 9000
+ 4452 strings out of 493335
+ 65440 string characters out of 3136683
+ 144114 words of memory out of 3000000
+ 7875 multiletter control sequences out of 15000+200000
+ 30455 words of font info for 83 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,12n,39p,1676b,387s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,12n,39p,1676b,379s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
 m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program 
-Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmex9.pfb><C:/Progra
-m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program 
-Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Fil
-es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files 
-(x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x8
-6)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Files (x86)/
-MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files (x86)/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX 2.9/
-fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
-1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/p
-ublic/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmsy9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/tim
-es/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.
-pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Pro
-gram Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on cwf_isbi_draft1.tex.pdf (4 pages, 492599 bytes).
+Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Fi
+les (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files
+ (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files (x
+86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86)
+/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Files (x86)/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files (x86)/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pub
+lic/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public
+/amsfonts/cm/cmsy9.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times
+/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pf
+b><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Progr
+am Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on cwf_isbi_draft1.tex.pdf (5 pages, 487668 bytes).
 PDF statistics:
- 101 PDF objects out of 1000 (max. 8388607)
+ 100 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
