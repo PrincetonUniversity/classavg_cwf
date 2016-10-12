@@ -45,6 +45,18 @@ Joachim Frank,
 \newblock in {\em Three-Dimensional Electron Microscopy of Macromolecular
   Assemblies}, Joachim Frank, Ed., p.~43. Academic Press, Burlington, 1996.
 
+\bibitem{mahclust1}
+Shiming Xiang, Feiping Nie, and Changshui Zhang,
+\newblock ``Learning a mahalanobis distance metric for data clustering and
+  classification,''
+\newblock {\em Pattern Recognition}, vol. 41, no. 12, pp. 3600 -- 3612, 2008.
+
+\bibitem{mahclust2}
+Xuemei Zhao, Yu~Li, and Quanhua Zhao,
+\newblock ``Mahalanobis distance based on fuzzy clustering algorithm for image
+  segmentation,''
+\newblock {\em Digit. Signal Process.}, vol. 43, no. C, pp. 8--16, Aug. 2015.
+
 \bibitem{zhao1}
 Z.~Zhao and A.~Singer,
 \newblock ``Fourier {Bessel} rotational invariant eigenimages,''
