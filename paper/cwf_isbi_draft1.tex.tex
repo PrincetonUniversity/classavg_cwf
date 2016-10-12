@@ -245,6 +245,8 @@ We propose an improved class averaging algorithm that incorporates the Mahalanob
 \State For each image and its $S$ aligned nearest neighbors, compute the Mahalanobis distance between the image and neighbors
 \State Rank $S$ neighbors according to the Mahalanobis distance, and choose the top $K$ as nearest neighbors
 \EndProcedure
+\Procedure{(Optional) Improve nearest neighbor classification using Vector Diffusion Maps (VDM) \cite{vdm}}{}
+\EndProcedure
 \end{algorithmic}
 \end{algorithm}
 
