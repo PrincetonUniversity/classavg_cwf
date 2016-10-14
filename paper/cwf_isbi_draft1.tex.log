@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.8.14)  13 OCT 2016 21:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.8.14)  14 OCT 2016 00:05
 entering extended mode
 **./cwf_isbi_draft1.tex.tex
 (cwf_isbi_draft1.tex.tex
@@ -455,6 +455,9 @@ Underfull \hbox (badness 3168) in paragraph at lines 253--254
  []
 
 [3]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 264.
@@ -487,13 +490,10 @@ Overfull \hbox (19.1088pt too wide) in paragraph at lines 282--286
  [] 
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [4 <./fighist_snr1by20.png (PNG copy)> <./fighist_snr1by40.png (PNG copy)> <./
-fighist_snr1by60.png (PNG copy)> <./fighist_snr1by80.png (PNG copy)>]
-(cwf_isbi_draft1.tex.bbl
-Underfull \hbox (badness 1642) in paragraph at lines 78--82
+(cwf_isbi_draft1.tex.bbl [4 <./fighist_snr1by20.png (PNG copy)> <./fighist_snr1
+by40.png (PNG copy)> <./fighist_snr1by60.png (PNG copy)> <./fighist_snr1by80.pn
+g (PNG copy)>]
+Underfull \hbox (badness 1642) in paragraph at lines 108--112
 []\OT1/ptm/m/n/10 Peter Wilcox Jones, An-drei Os-ipov, and Vladimir
  []
 
@@ -505,10 +505,10 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 4717 strings out of 493335
- 69307 string characters out of 3136683
- 149490 words of memory out of 3000000
- 8130 multiletter control sequences out of 15000+200000
+ 4722 strings out of 493335
+ 69370 string characters out of 3136683
+ 149510 words of memory out of 3000000
+ 8135 multiletter control sequences out of 15000+200000
  33293 words of font info for 86 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  42i,12n,39p,1675b,385s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -532,7 +532,7 @@ tic/uhvr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.
 pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Pr
 ogram Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files
  (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on cwf_isbi_draft1.tex.pdf (5 pages, 501104 bytes).
+Output written on cwf_isbi_draft1.tex.pdf (5 pages, 533864 bytes).
 PDF statistics:
  104 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

@@ -13,6 +13,42 @@ Sjors~H.W. Scheres,
 \newblock {\em Journal of Structural Biology}, vol. 189, no. 2, pp. 114 -- 122,
   2015.
 
+\bibitem{Penczek1992}
+P.~A. Penczek, M.~Radermacher, and J.~Frank,
+\newblock ``Three-dimensional reconstruction of single particles embedded in
+  ice,''
+\newblock {\em Ultramicroscopy}, vol. 40, pp. 33--53, 1992.
+
+\bibitem{Penczek1996}
+P.~A. Penczek, J.~Zhu, and J.~Frank,
+\newblock ``A common-lines based method for determining orientations for
+  {$N>3$} particle projections simultaneously,''
+\newblock {\em Ultramicroscopy}, vol. 63, no. 3-4, pp. 205--218, 1996.
+
+\bibitem{vanHeel1990a}
+M.~Schatz and M.~van Heel,
+\newblock ``Invariant classification of molecular views in electron
+  micrographs,''
+\newblock {\em Ultramicroscopy}, vol. 32, pp. 255--264, 1990.
+
+\bibitem{vanHeel1981}
+M.~{van Heel} and J.~Frank,
+\newblock ``Use of multivariate statistics in analysing the images of
+  biological macromolecules,''
+\newblock {\em Ultramicroscopy}, vol. 6, no. 2, pp. 187--194, 1981.
+
+\bibitem{Dube1993}
+P.~Dube, P.~Tavares, R.~Lurz, and M.~van Heel,
+\newblock ``Bacteriophage {SPP}1 portal protein: a {DNA} pump with 13-fold
+  symmetry,''
+\newblock {\em EMBO J.}, vol. 15, pp. 1303--1309, 1993.
+
+\bibitem{rokhlin}
+Vladimir Rokhlin, Arthur Szlam, and Mark Tygert,
+\newblock ``A randomized algorithm for principal component analysis,''
+\newblock {\em SIAM Journal on Matrix Analysis and Applications}, vol. 31, no.
+  3, pp. 1100--1124, 2010.
+
 \bibitem{vdm}
 A.~Singer and H.-T. Wu,
 \newblock ``Vector diffusion maps and the connection laplacian,''
@@ -67,12 +103,6 @@ Z.~Zhao, Y.~Shkolnisky, and A.~Singer,
 \newblock ``Fast steerable principal component analysis,''
 \newblock {\em IEEE Transactions on Computational Imaging}, vol. 2, no. 1, pp.
   1--12, March 2016.
-
-\bibitem{rokhlin}
-Vladimir Rokhlin, Arthur Szlam, and Mark Tygert,
-\newblock ``A randomized algorithm for principal component analysis,''
-\newblock {\em SIAM Journal on Matrix Analysis and Applications}, vol. 31, no.
-  3, pp. 1100--1124, 2010.
 
 \bibitem{fastnn}
 Peter~Wilcox Jones, Andrei Osipov, and Vladimir Rokhlin,
