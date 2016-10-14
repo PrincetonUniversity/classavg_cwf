@@ -85,7 +85,7 @@ SPR from cryo-EM is a rapidly advancing technique in structural biology to deter
 the 3D structures of macromolecular complexes in their native state,
  without the need for crystallization. First, the sample, consisting of randomly oriented, nearly identical copies of a macromolecule, is frozen in a thin ice layer. An electron microscope is used to acquire top view images of the sample, in the form of a large image called a 'micrograph', from which individual particle images are picked semi-automatically. After preprocessing the acquired raw projection images, the preprocessed images are next classified, and images within each class are averaged (known in the cryo-EM community as "class averaging"), to obtain a single image per class, that enjoys a higher signal to noise ratio (SNR) than the individual images. To minimize radiation damage, cryo-EM imaging must be constrained to low electron doses, which results in a very low SNR in the acquired 2D projection images. Class averaging is thus a crucial step in the SPR pipeline; class averages are used for a preliminary inspection of the dataset, to eliminate outliers, and in semi-automated particle picking \cite{relion}. Typically, a user manually picks particles from a small number of micrographs. These are used to compute class averages, which are further used as templates to pick particles from all micrographs. A second round of class averaging needs to be performed to identify and discard outliers after this step. The resulting class averages enjoy a much higher SNR than the input raw images, thereby allowing inspection of the dataset and elimination of outliers. Class averages are used for subsequent stages of the SPR pipelines, such as viewing angle detection, and finally, determination of the 3D structure.
  
-The two popular approaches for 2D class averaging in cryo-EM are 1) multivariate statistical analysis (MSA) and 2)multi-reference alignment (MRA).
+The two popular approaches for 2D class averaging \cite{} in cryo-EM are multivariate statistical analysis (MSA)\cite{} with multi-reference alignment (MRA) \cite{} and iterative reference-free alignment using K-means clustering \cite{}.
 
 In \cite{zhao}, the authors introduced a new approach for 2D class averaging, based on rotationally invariant representation to compute the distance between pairs of cryo-EM images. The images are first expanded in a steerable basis. Next, a rotationally invariant representation of the images is computed from this expansion.
 The rotationally invariant features are built by constructing the bispectrum from the expansion coefficients of the images in the steerable basis. After projecting the computed bispectrum to a lower dimensional space using a randomized PCA algorithm, the distance between images is computed as the Euclidean distance between their rotationally invariant representation. This completes the initial round of 2D classification. 
@@ -141,6 +141,8 @@ CWF was proposed in \cite{cwf} as an algorithm to (i) estimate the CTF-corrected
 %\subsection{Fourier Bessel Steerable PCA}
 %For both class averaging and CWF, the images are expressed in the Fourier Bessel basis. Since the basis elements are outer products of radial functions and angular Fourier modes, the covariance matrix is block diagonal in this choice of basis. Therefore each block of the covariance, corresponding to a particular angular frequency, can be computed separately, making the computation more efficient.
 \section{Mahalonobis Distance}
+The Mahalanobis distance in statistics \cite{mah} is a generalized, unitless and scale invariant metric that takes correlations in the dataset into account. It is popularly used for anomaly detection and clustering \cite{mahclust1, mahclust2}.
+ 
 Our goal is to define a metric to compare how close any two cryo-EM images are, that is, given the CTF-affected, noisy observations for a pair of images
 \begin{eqnarray} 
 Y_i=H_i X_i + N_i, \quad \text{for} \quad i=1,2 .
@@ -244,6 +246,8 @@ We propose an improved class averaging algorithm that incorporates the Mahalanob
 \State Compute the quantities $\alpha, \beta, L, M$ using Covariance Wiener Filtering (CWF) \cite{cwf}
 \State For each image and its $S$ aligned nearest neighbors, compute the Mahalanobis distance between the image and neighbors
 \State Rank $S$ neighbors according to the Mahalanobis distance, and choose the top $K$ as nearest neighbors
+\EndProcedure
+\Procedure{(Optional) Improve nearest neighbor classification using Vector Diffusion Maps (VDM) \cite{vdm}}{}
 \EndProcedure
 \end{algorithmic}
 \end{algorithm}
