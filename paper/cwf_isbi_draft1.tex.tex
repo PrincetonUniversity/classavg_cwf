@@ -97,7 +97,7 @@ There are two main contributions of this paper. First, we introduce a new simila
 
 \section{Background}
 \subsection{Image Formation Model}
-Under the linear, weak phase approximation \cite{frankbook}, the image formation model in cryo-EM is given by
+Under the linear, weak phase approximation (see Chapt. 2 in \cite{frankbook}), the image formation model in cryo-EM is given by
 \begin{equation}
 y_i = a_i\star x_i + n_i
 \label{eq:imreal}
@@ -108,13 +108,13 @@ Y_i = A_iX_i + N_i
 \label{eq:imfour}
 \end{equation}
 where $Y_i$, $X_i$ and $N_i$ are the Fourier transforms of $y_i$, $x_i$ and $n_i$ respectively.
-The CTF is approximately  given by \cite{frankctf}
+The CTF is approximately  given by (see Chapt. 3 in \cite{frankbook})
 \begin{equation}
-CTF(\hat{k};\Delta\hat{z}^2)= B\sin[-\pi \Delta\hat{z}\hat{k}^2 + \frac{\pi}{2} \hat{k}^4]
+CTF(\hat{k};\Delta\hat{z}^2)= \exp{-Bk^2}\sin[-\pi \Delta\hat{z}\hat{k}^2 + \frac{\pi}{2} \hat{k}^4]
 \label{eq:ctf}
 \end{equation}
 where 
-$\Delta\hat{z}=\frac{\Delta z}{[C_s \lambda]^{\frac{1}{2}}}$ is the``generalized defocus" and $\hat{k}=[C_s \lambda]^{\frac{1}{4}}k$ is the``generalized spatial frequency", and $B$ is the defocus dependent envelope function. CTF's corresponding to different defocus values have different zero crossings (see Fig.\ref{fig:ctf}). Note that the CTF inverts the sign of the image's Fourier coefficients when it is negative, and completely suppresses information at its zero crossings.
+$\Delta\hat{z}=\frac{\Delta z}{[C_s \lambda]^{\frac{1}{2}}}$ is the``generalized defocus" and $\hat{k}=[C_s \lambda]^{\frac{1}{4}}k$ is the``generalized spatial frequency", and $B$ is the B factor for the defocus dependent envelope function. CTF's corresponding to different defocus values have different zero crossings (see Fig.\ref{fig:ctf}). Note that the CTF inverts the sign of the image's Fourier coefficients when it is negative, and completely suppresses information at its zero crossings.
 
 \begin{figure}
 \begin{center}
@@ -210,11 +210,11 @@ Let $x_i - x_j = x_{ij}$, and $\alpha_i -\alpha_j=\alpha_{ij}$. Then, for small 
 &\Pr(||x_{ij}||_{p} < \epsilon|y_i,y_j)   \nonumber
 										 =	 \Pr(||x_{ij}||_{p} < \epsilon|y_i,y_j)\\ \nonumber
 										&=   \frac{1}{(2 \pi)^{\frac{d}{2}} |L_{i}+L_{j}|^ \frac{1}{2}} \times \\ 
-										& \int_{-\epsilon }^{\epsilon}\exp \{ -\frac{1}{2}(x_3 - \gamma)^T(L+M)^{-1}(x_3 - \gamma\}dx_3 
+										& \int_{-\epsilon }^{\epsilon}\exp \{ -\frac{1}{2}(x_3 - \alpha_{ij})^T(L+M)^{-1}(x_3 - \alpha_{ij}\}dx_3 
 \end{align}
 For small $\epsilon$ this is
 \begin{equation}
-= \frac{(2 \epsilon)^n}{(2 \pi)^{\frac{n}{2}} |L + M|^{\frac{1}{2}}} \exp\{-\frac{1}{2}\gamma^T(L+M)^{-1}\gamma\} 
+= \frac{(2 \epsilon)^n}{(2 \pi)^{\frac{n}{2}} |L + M|^{\frac{1}{2}}} \exp\{-\frac{1}{2}\alpha_{ij}^T(L+M)^{-1}\alpha_{ij}\} 
 \label{eqn:metr}
 \end{equation}
 So we can define our similarity measure after taking the logarithm on both sides of eqn.(\ref{eqn:metr}), dropping out the constant term, and substituting back $\gamma$:

@@ -8,12 +8,12 @@ J.~Frank,
 \newblock Oxford University Press, USA, 2006.
 
 \bibitem{Kuhlbrandt1443}
-Werner K{\"u}hlbrandt,
+W.~K{\"u}hlbrandt,
 \newblock ``The resolution revolution,''
 \newblock {\em Science}, vol. 343, no. 6178, pp. 1443--1444, 2014.
 
 \bibitem{relion}
-Sjors~H.W. Scheres,
+S.~Scheres,
 \newblock ``Semi-automated selection of cryo-em particles in relion-1.3,''
 \newblock {\em Journal of Structural Biology}, vol. 189, no. 2, pp. 114 -- 122,
   2015.
@@ -56,7 +56,7 @@ Z.~Zhao and A.~Singer,
   2014.
 
 \bibitem{cwf}
-Tejal Bhamre, Teng Zhang, and Amit Singer,
+T.~Bhamre, T.~Zhang, and A.~Singer,
 \newblock ``Denoising and covariance estimation of single particle cryo-em
   images,''
 \newblock {\em Journal of Structural Biology}, vol. 195, no. 1, pp. 72 -- 81,
@@ -70,19 +70,12 @@ P.~C. Mahalanobis,
 
 \bibitem{frankbook}
 Joachim Frank,
-\newblock ``Chapter 2 - electron microscopy of macromolecular assemblies,''
+\newblock ``Electron microscopy of macromolecular assemblies,''
 \newblock in {\em Three-Dimensional Electron Microscopy of Macromolecular
-  Assemblies}, Joachim Frank, Ed., pp. 12 -- 53. Academic Press, Burlington,
-  1996.
-
-\bibitem{frankctf}
-Joachim Frank,
-\newblock ``Chapter 3 - electron microscopy of macromolecular assemblies,''
-\newblock in {\em Three-Dimensional Electron Microscopy of Macromolecular
-  Assemblies}, Joachim Frank, Ed., p.~43. Academic Press, Burlington, 1996.
+  Assemblies}, J.~Frank, Ed., pp. 12 -- 53. Academic Press, Burlington, 1996.
 
 \bibitem{rokhlin}
-Vladimir Rokhlin, Arthur Szlam, and Mark Tygert,
+V.~Rokhlin, A.~Szlam, and M.~Tygert,
 \newblock ``A randomized algorithm for principal component analysis,''
 \newblock {\em SIAM Journal on Matrix Analysis and Applications}, vol. 31, no.
   3, pp. 1100--1124, 2010.
@@ -94,27 +87,22 @@ A.~Singer and H.-T. Wu,
   pp. 1067--1144, 2012.
 
 \bibitem{mahclust1}
-Shiming Xiang, Feiping Nie, and Changshui Zhang,
+S.~Xiang, F.~Nie, and C.~Zhang,
 \newblock ``Learning a mahalanobis distance metric for data clustering and
   classification,''
 \newblock {\em Pattern Recognition}, vol. 41, no. 12, pp. 3600 -- 3612, 2008.
 
 \bibitem{mahclust2}
-Xuemei Zhao, Yu~Li, and Quanhua Zhao,
+X.~Zhao, Y.~Li, and Q.~Zhao,
 \newblock ``Mahalanobis distance based on fuzzy clustering algorithm for image
   segmentation,''
 \newblock {\em Digit. Signal Process.}, vol. 43, no. C, pp. 8--16, Aug. 2015.
 
 \bibitem{nlica}
-Amit Singer and Ronald~R. Coifman,
+A.~Singer and R.~R. Coifman,
 \newblock ``Non-linear independent component analysis with diffusion maps,''
 \newblock {\em Applied and Computational Harmonic Analysis}, vol. 25, no. 2,
   pp. 226 -- 239, 2008.
-
-\bibitem{zhao1}
-Z.~Zhao and A.~Singer,
-\newblock ``Fourier {Bessel} rotational invariant eigenimages,''
-\newblock {\em J. Opt. Soc. Am. A}, vol. 30, no. 5, pp. 871--877, May 2013.
 
 \bibitem{ffbspca}
 Z.~Zhao, Y.~Shkolnisky, and A.~Singer,
@@ -123,20 +111,20 @@ Z.~Zhao, Y.~Shkolnisky, and A.~Singer,
   1--12, March 2016.
 
 \bibitem{fastnn}
-Peter~Wilcox Jones, Andrei Osipov, and Vladimir Rokhlin,
+P.W. Jones, A.~Osipov, and V.~Rokhlin,
 \newblock ``Randomized approximate nearest neighbors algorithm,''
 \newblock {\em Proceedings of the National Academy of Sciences}, vol. 108, no.
   38, pp. 15679--15686, 2011.
 
 \bibitem{intgeom}
-Ronen Talmon and Ronald~R. Coifman,
+R.~Talmon and R.R. Coifman,
 \newblock ``Empirical intrinsic geometry for nonlinear modeling and time series
   filtering,''
 \newblock {\em Proceedings of the National Academy of Sciences}, vol. 110, no.
   31, pp. 12535--12540, 2013.
 
 \bibitem{difmap}
-Ronald~R. Coifman and Stéphane Lafon,
+R.R. Coifman and S.~Lafon,
 \newblock ``Diffusion maps,''
 \newblock {\em Applied and Computational Harmonic Analysis}, vol. 21, no. 1,
   pp. 5 -- 30, 2006.
