@@ -1,11 +1,16 @@
 \begin{thebibliography}{10}
 
-\bibitem{zhao}
-Z.~Zhao and A.~Singer,
-\newblock ``Rotationally invariant image representation for viewing direction
-  classification in cryo-{EM},''
-\newblock {\em Journal of Structural Biology}, vol. 186, no. 1, pp. 153 -- 166,
-  2014.
+\bibitem{Frank1}
+J.~Frank,
+\newblock {\em Three-Dimensional Electron Microscopy of Macromolecular
+  Assemblies : Visualization of Biological Molecules in Their Native State:
+  Visualization of Biological Molecules in Their Native State},
+\newblock Oxford University Press, USA, 2006.
+
+\bibitem{Kuhlbrandt1443}
+Werner K{\"u}hlbrandt,
+\newblock ``The resolution revolution,''
+\newblock {\em Science}, vol. 343, no. 6178, pp. 1443--1444, 2014.
 
 \bibitem{relion}
 Sjors~H.W. Scheres,
@@ -43,17 +48,12 @@ P.~Dube, P.~Tavares, R.~Lurz, and M.~van Heel,
   symmetry,''
 \newblock {\em EMBO J.}, vol. 15, pp. 1303--1309, 1993.
 
-\bibitem{rokhlin}
-Vladimir Rokhlin, Arthur Szlam, and Mark Tygert,
-\newblock ``A randomized algorithm for principal component analysis,''
-\newblock {\em SIAM Journal on Matrix Analysis and Applications}, vol. 31, no.
-  3, pp. 1100--1124, 2010.
-
-\bibitem{vdm}
-A.~Singer and H.-T. Wu,
-\newblock ``Vector diffusion maps and the connection laplacian,''
-\newblock {\em Communications on Pure and Applied Mathematics}, vol. 65, no. 8,
-  pp. 1067--1144, 2012.
+\bibitem{zhao}
+Z.~Zhao and A.~Singer,
+\newblock ``Rotationally invariant image representation for viewing direction
+  classification in cryo-{EM},''
+\newblock {\em Journal of Structural Biology}, vol. 186, no. 1, pp. 153 -- 166,
+  2014.
 
 \bibitem{cwf}
 Tejal Bhamre, Teng Zhang, and Amit Singer,
@@ -81,6 +81,18 @@ Joachim Frank,
 \newblock in {\em Three-Dimensional Electron Microscopy of Macromolecular
   Assemblies}, Joachim Frank, Ed., p.~43. Academic Press, Burlington, 1996.
 
+\bibitem{rokhlin}
+Vladimir Rokhlin, Arthur Szlam, and Mark Tygert,
+\newblock ``A randomized algorithm for principal component analysis,''
+\newblock {\em SIAM Journal on Matrix Analysis and Applications}, vol. 31, no.
+  3, pp. 1100--1124, 2010.
+
+\bibitem{vdm}
+A.~Singer and H.-T. Wu,
+\newblock ``Vector diffusion maps and the connection laplacian,''
+\newblock {\em Communications on Pure and Applied Mathematics}, vol. 65, no. 8,
+  pp. 1067--1144, 2012.
+
 \bibitem{mahclust1}
 Shiming Xiang, Feiping Nie, and Changshui Zhang,
 \newblock ``Learning a mahalanobis distance metric for data clustering and
@@ -92,6 +104,12 @@ Xuemei Zhao, Yu~Li, and Quanhua Zhao,
 \newblock ``Mahalanobis distance based on fuzzy clustering algorithm for image
   segmentation,''
 \newblock {\em Digit. Signal Process.}, vol. 43, no. C, pp. 8--16, Aug. 2015.
+
+\bibitem{nlica}
+Amit Singer and Ronald~R. Coifman,
+\newblock ``Non-linear independent component analysis with diffusion maps,''
+\newblock {\em Applied and Computational Harmonic Analysis}, vol. 25, no. 2,
+  pp. 226 -- 239, 2008.
 
 \bibitem{zhao1}
 Z.~Zhao and A.~Singer,
@@ -116,12 +134,6 @@ Ronen Talmon and Ronald~R. Coifman,
   filtering,''
 \newblock {\em Proceedings of the National Academy of Sciences}, vol. 110, no.
   31, pp. 12535--12540, 2013.
-
-\bibitem{nlica}
-Amit Singer and Ronald~R. Coifman,
-\newblock ``Non-linear independent component analysis with diffusion maps,''
-\newblock {\em Applied and Computational Harmonic Analysis}, vol. 25, no. 2,
-  pp. 226 -- 239, 2008.
 
 \bibitem{difmap}
 Ronald~R. Coifman and Stéphane Lafon,

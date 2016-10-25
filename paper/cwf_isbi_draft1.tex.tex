@@ -73,7 +73,7 @@
 \maketitle
 %
 \begin{abstract}
-Single particle reconstruction (SPR) from cryo-electron microscopy (EM) is a technique in which the 3D structure of a molecule needs to be determined from its CTF-affected, noisy 2D projection images taken at unknown viewing directions. One of the main challenges in cryo-EM is the typically low signal to noise ratio (SNR) of the acquired images. 2D classification of images, followed by class averaging, improves the SNR of the resulting averages, and and is used for selecting particles from micrographs and for inspecting the particle images \cite{zhao}. We introduce a new metric, akin to the Mahalanobis distance, to compare cryo-EM images belonging to different defocus groups. The new metric is employed to rank nearest neighbors, thereby leading to an improved algorithm for class averaging. We evaluate the performance of the improved class averaging on synthetic datasets and note an improvement compared to \cite{zhao}.
+Single particle reconstruction (SPR) from cryo-electron microscopy (EM) is a technique in which the 3D structure of a molecule needs to be determined from its contrast transfer function (CTF) affected, noisy 2D projection images taken at unknown viewing directions. One of the main challenges in cryo-EM is the typically low signal to noise ratio (SNR) of the acquired images. 2D classification of images, followed by class averaging, improves the SNR of the resulting averages, and is used for selecting particles from micrographs and for inspecting the particle images. We introduce a new affinity measure, akin to the Mahalanobis distance, to compare cryo-EM images belonging to different defocus groups. The new similarity measure is employed to detect similar images, thereby leading to an improved algorithm for class averaging. We evaluate the performance of the proposed class averaging procedure on synthetic datasets, obtaining state of the art classification.
 
 \end{abstract}
 %
@@ -84,18 +84,16 @@ Cryo-electron microscopy, single particle reconstruction, particle picking, clas
 \section{Introduction}
 \label{sec:intro}
 SPR from cryo-EM is a rapidly advancing technique in structural biology to determine
-the 3D structures of macromolecular complexes in their native state,
- without the need for crystallization. First, the sample, consisting of randomly oriented, nearly identical copies of a macromolecule, is frozen in a thin ice layer. An electron microscope is used to acquire top view images of the sample, in the form of a large image called a 'micrograph', from which individual particle images are picked semi-automatically. After preprocessing the acquired raw projection images, the preprocessed images are next classified, and images within each class are averaged (known in the cryo-EM community as "class averaging"), to obtain a single image per class, that enjoys a higher signal to noise ratio (SNR) than the individual images. To minimize radiation damage, cryo-EM imaging must be constrained to low electron doses, which results in a very low SNR in the acquired 2D projection images. Class averaging is thus a crucial step in the SPR pipeline; class averages are used for a preliminary inspection of the dataset, to eliminate outliers, and in semi-automated particle picking \cite{relion}. Typically, a user manually picks particles from a small number of micrographs. These are used to compute class averages, which are further used as templates to pick particles from all micrographs. A second round of class averaging needs to be performed to identify and discard outliers after this step. The resulting class averages enjoy a much higher SNR than the input raw images, thereby allowing inspection of the dataset and elimination of outliers. Class averages are used for subsequent stages of the SPR pipelines, such as orientation estimation, and finally, determination of the 3D structure.
+the 3D structures of macromolecular complexes in their native state \cite{Frank1, Kuhlbrandt1443},
+ without the need for crystallization. First, the sample, consisting of randomly oriented, nearly identical copies of a macromolecule, is frozen in a thin ice layer. An electron microscope is used to acquire top view images of the sample, in the form of a large image called a 'micrograph', from which individual particle images are picked semi-automatically. After preprocessing the sleetced raw particle images, the images are next classified, and images within each class are averaged, (a step known as "class averaging"), to obtain a single image per class, that enjoys a higher SNR than the individual images. To minimize radiation damage, cryo-EM imaging must be constrained to low electron doses, which results in a very low SNR in the acquired 2D projection images. Class averaging is thus a crucial step in the SPR pipeline; class averages are used for a preliminary inspection of the dataset, to eliminate outliers, and in semi-automated particle picking \cite{relion}. Typically, a user manually picks particles from a small number of micrographs. These are used to compute class averages, which are further used as templates to pick particles from all micrographs. A second round of class averaging needs to be performed to identify and discard outliers after this step. The resulting class averages enjoy a much higher SNR than the input raw images, thereby allowing inspection of the dataset and elimination of outliers. Class averages are used for subsequent stages of the SPR pipelines, such as orientation estimation, and finally, determination of the 3D structure.
  
-The two popular approaches for 2D class averaging \cite{Penczek1992,Penczek1996, vanHeel1990a, vanHeel1981} in cryo-EM are multivariate statistical analysis (MSA)\cite{vanHeel1981} with multi-reference alignment (MRA) \cite{Dube1993} and iterative reference-free alignment using K-means clustering \cite{Penczek1996}.
+The two popular approaches for 2D class averaging \cite{Penczek1992,Penczek1996, vanHeel1990a, vanHeel1981} in cryo-EM are multivariate statistical analysis (MSA)\cite{vanHeel1981} with multi-reference alignment (MRA) \cite{Dube1993} and iterative reference-free alignment using K-means clustering \cite{Penczek1996}. {\color{red} TODO}
 
-In \cite{zhao}, the authors introduced a new approach for 2D class averaging, based on a new rotationally invariant representation to compute the distance between pairs of cryo-EM images. The images are first expanded in a steerable basis. Next, the rotationally invariant features are built by constructing the bispectrum from the expansion coefficients of the images in the steerable basis. After projecting the computed bispectrum to a lower dimensional space using a randomized PCA algorithm \cite{rokhlin}, the distance between images is computed as the Euclidean distance between their rotationally invariant representation. This completes the initial round of 2D classification. 
-
-The nearest neighbors detected at this stage can suffer from many outliers at high levels of noise. The initial classification is next improved by checking the consistency of in-plane rotations along several paths between nearest neighbors, by employing Vector Diffusion Maps (VDM) \cite{vdm}. Finally, the detected nearest neighbors are aligned in-plane and averaged to produce class averages. 
+In \cite{zhao}, the authors introduced a new, fast approach for 2D class averaging, based on a new rotationally invariant representation to compute the similarity between pairs of cryo-EM images.
 
 Recently in \cite{cwf}, it was shown that this preliminary inspection of the underlying clean images can in fact be performed at an earlier stage, by better denoising the acquired images using an algorithm called Covariance Wiener Filtering (CWF). In CWF, the covariance matrix of the underlying clean projection images is estimated from their noisy, CTF-affected observations. This estimated covariance is then used in the classical Wiener deconvolution framework to obtain denoised images, which can be used for a preliminary viewing of the underlying dataset, and outlier detection. 
 
-There are two main contributions of this paper. First, we introduce a new metric, which can be viewed as a Mahalanobis distance \cite{mah}, to compute the distance between pairs of cryo-EM images. Second, we use the proposed Mahalanobis distance to improve the class averaging algorithm described in \cite{zhao}. We first obtain for each image a list of $S$ other images suspected as nearest neighbors using the algorithm described above (see section 2 for details), and then rank these suspects using the Mahalanobis distance. The top $K$ nearest neighbors, where $K<S$, given by this procedure are finally aligned and averaged to produce class averages. We test the new algorithm on a synthetic dataset at various noise levels and observe an improvement in the number of nearest neighbors correctly detected.
+There are two main contributions of this paper. First, we introduce a new similarity measure, which can be viewed as a Mahalanobis distance \cite{mah}, to compute the distance between pairs of cryo-EM images. Second, we use the proposed Mahalanobis distance to improve the class averaging algorithm described in \cite{zhao}. We first obtain for each image a list of $S$ other images suspected as nearest neighbors using the algorithm described above (see section 2 for details), and then rank these suspects using the Mahalanobis distance. The top $K$ nearest neighbors, where $K<S$, given by this procedure are finally aligned and averaged to produce class averages. We test the new algorithm on a synthetic dataset at various noise levels and observe an improvement in the number of nearest neighbors correctly detected.
 
 \section{Background}
 \subsection{Image Formation Model}
@@ -104,20 +102,19 @@ Under the linear, weak phase approximation \cite{frankbook}, the image formation
 y_i = a_i\star x_i + n_i
 \label{eq:imreal}
 \end{equation}
-where and $\star$ denotes the convolution operation, $y_i$ is the noisy projection image in real space, $x_i$ is the underlying clean projection image in real space, $a_i$ is the point spread function of the microscope, and $n_i$ is additive Gaussian noise that corrupts the image. In the Fourier domain, images are multiplied with the Fourier transform of the point spread function, called the contrast transfer function (CTF), and eqn.(\ref{eq:imreal}) can be rewritten as
+where $\star$ denotes the convolution operation, $y_i$ is the noisy projection image in real space, $x_i$ is the underlying clean projection image in real space, $a_i$ is the point spread function of the microscope, and $n_i$ is additive Gaussian noise that corrupts the image. In the Fourier domain, images are multiplied with the Fourier transform of the point spread function, called the CTF, and eqn.(\ref{eq:imreal}) can be rewritten as
 \begin{equation}
 Y_i = A_iX_i + N_i
 \label{eq:imfour}
 \end{equation}
-
-The CTF is mathematically given by \cite{frankctf}
+where $Y_i$, $X_i$ and $N_i$ are the Fourier transforms of $y_i$, $x_i$ and $n_i$ respectively.
+The CTF is approximately  given by \cite{frankctf}
 \begin{equation}
-CTF(\hat{k};\Delta\hat{z}^2)= \sin[-\pi \Delta\hat{z}\hat{k}^2 + \frac{\pi}{2} \hat{k}^4]
+CTF(\hat{k};\Delta\hat{z}^2)= B\sin[-\pi \Delta\hat{z}\hat{k}^2 + \frac{\pi}{2} \hat{k}^4]
 \label{eq:ctf}
 \end{equation}
-
 where 
-$\Delta\hat{z}=\frac{\Delta z}{[C_s \lambda]^{\frac{1}{2}}}$ is the "generalized defocus" and $\hat{k}=[C_s \lambda]^{\frac{1}{4}}k$ is the "generalized spatial frequency". CTF's corresponding to different defocus values have different zero crossings (see Fig.\ref{fig:ctf}. Note that the CTF inverts the sign of the image's Fourier coefficients when it is negative, and suppresses information at its zero crossings.
+$\Delta\hat{z}=\frac{\Delta z}{[C_s \lambda]^{\frac{1}{2}}}$ is the``generalized defocus" and $\hat{k}=[C_s \lambda]^{\frac{1}{4}}k$ is the``generalized spatial frequency", and $B$ is the defocus dependent envelope function. CTF's corresponding to different defocus values have different zero crossings (see Fig.\ref{fig:ctf}). Note that the CTF inverts the sign of the image's Fourier coefficients when it is negative, and completely suppresses information at its zero crossings.
 
 \begin{figure}
 \begin{center}
@@ -128,93 +125,91 @@ $\Delta\hat{z}=\frac{\Delta z}{[C_s \lambda]^{\frac{1}{2}}}$ is the "generalized
 \end{figure}
 
 
-\subsection{Class Averaging}
-The procedure for class averaging, described in \cite{zhao}, consists of 3 main steps. First, Fourier Bessel Steerable PCA is used to denoise images and estimate the 2D covariance matrix of the images and their in-plane rotations. Phase flipping is used as a CTF correction scheme. Second, the bispectrum of the expansion coefficients in the steerable basis is computed. The bispectrum is a rotationally invariant representation of images, but is typically of very high dimensionality. It is projected on to a lower dimensional subspace using a fast, randomized PCA algorithm \cite{rokhlin}. One way to compare the distance between images after this step is to use the normalized cross correlation. However, this method suffers from outliers in the nearest neighbor detection at very low SNR's. So, the third step uses Vector Diffusion Maps to improve the initial classification by viewing angles.
+\subsection{Rotationally Invariant Class Averaging}
+The procedure for class averaging, described in \cite{zhao}, consists of 3 main steps. First, principal component analysis (PCA) of CTF-corrected phase flipped images is computed. We refer to this step as steerable PCA, because the procedure takes into account that the 2D covariance matrix commutes with in-plane rotations. Second, the bispectrum of the expansion coefficients in the reduced steerable basis is computed. The bispectrum is a rotationally invariant representation of images, but is typically of very high dimensionality. It is projected onto a lower dimensional subspace using a fast, randomized PCA algorithm \cite{rokhlin}. One way to compare the distance between images after this step is to use the normalized cross correlation. However, this method suffers from outliers in the nearest neighbor detection at very low SNR's. So, the third step uses Vector Diffusion Maps\cite{vdm} to improve the initial classification.
 
 
 \subsection{Covariance Wiener Filtering (CWF)}
-CWF was proposed in \cite{cwf} as an algorithm to (i) estimate the CTF-corrected covariance matrix of the underlying clean 2D projection images and (ii) using the estimated covariance to solve the associated deconvolution problem in eqn. \ref{eq:imfour} to obtain denoised images, that are estimates of $X_i$ for each $i$ in 
+CWF was proposed in \cite{cwf} as an algorithm to (i) estimate the CTF-corrected covariance matrix of the underlying clean 2D projection images (since phase flipping is not an optimal correction)  and (ii) using the estimated covariance to solve the associated deconvolution problem in eqn. \ref{eq:imfour} to obtain denoised images, that are estimates of $X_i$ for each $i$ in 
 eqn. \ref{eq:imfour}. The first step involves estimating the mean image of the dataset, $\mu$, as $\hat{\mu}$, followed by solving a least squares problem to estimate the covariance $\Sigma$ as $\hat{\Sigma}$. Under the assumption of additive white Gaussian noise, the estimate of the underlying clean image $X_i$ is given by
 \begin{equation}
 \hat{X_i}=(I-H_iA_i)\hat{\mu} + H_iY_i
 \end{equation}
+where $H_i=\hat{\Sigma}A_i^T(A_i \hat{\Sigma}A_i^T + \sigma^2 I)^{-1}$
 %
 %\subsection{Fourier Bessel Steerable PCA}
 %For both class averaging and CWF, the images are expressed in the Fourier Bessel basis. Since the basis elements are outer products of radial functions and angular Fourier modes, the covariance matrix is block diagonal in this choice of basis. Therefore each block of the covariance, corresponding to a particular angular frequency, can be computed separately, making the computation more efficient.
 \section{Mahalonobis Distance}
-The Mahalanobis distance in statistics \cite{mah} is a generalized, unitless and scale invariant metric that takes correlations in the dataset into account. It is popularly used for anomaly detection and clustering \cite{mahclust1, mahclust2}.
+The Mahalanobis distance in statistics \cite{mah} is a generalized, unitless and scale invariant similarity measure that takes correlations in the dataset into account. It is popularly used for anomaly detection and clustering \cite{mahclust1, mahclust2}.
  
-Our goal is to define a metric to compare how close any two cryo-EM images are, given the CTF-affected, noisy observations for a pair of images
-\begin{eqnarray} 
-Y_i=H_i X_i + N_i, \quad \text{for} \quad i=1,2 .
-%Y_2=H_2 X_2 + N_2 \nonumber,
-\end{eqnarray}
-CTF correction is a challenging problem due to the numerous zero crossings of the CTF. A popular, albeit, heuristic approach for CTF correction is 'phase flipping', which involves simply inverting the sign of the Fourier coefficients. This corrects for the phase inversion caused due to the CTF, but does not perform amplitude correction. In \cite{cwf}, the authors introduced a new approach for denoising and CTF correction in a single step, called CWF. When comparing distances between cryo-EM images, one must take into account that different images belong to different defocus groups, that is, they are affected by different CTF's. Since phase flipping is suboptimal as a method for CTF correction, computing nearest neighbors using the Euclidean distance between features constructed from phase flipped, denoised images can
- suffer from incorrectly identified neighbors. The main motivation of this paper is to introduce a Mahalanobis distance for cryo-EM images, as a metric to compute the distance between images belonging to different defocus groups. Moreover, we propose to use this notion of distance to improve the existing class averaging pipeline in \cite{zhao1}.
+Our goal is to define a similarity measure to compare how close any two cryo-EM images are, given the CTF-affected, noisy observations for a pair of images, say $Y_1$ and $Y_2$ in eqn.\ref{eq:imfour}.
+CTF correction is a challenging problem due to the numerous zero crossings of the CTF. A popular, albeit, heuristic approach for CTF correction is 'phase flipping', which involves simply inverting the sign of the Fourier coefficients. This corrects for the phase inversion caused due to the CTF, but does not perform amplitude correction. In \cite{cwf}, a new approach for denoising and CTF correction in a single step was introduced, called CWF. When comparing distances between cryo-EM images, one must take into account that different images belong to different defocus groups, that is, they are affected by different CTF's. Since phase flipping is suboptimal as a method for CTF correction, computing nearest neighbors using the Euclidean distance between features constructed from phase flipped, denoised images can suffer from incorrectly identified neighbors. One simple approach would be to simply use the Eucilidean distance between the CTF-corrected CWF coefficients of images obtained from denoising, as a measure of similarity. However, this measure does not take into account the structure of the covariance matrix of underlying clean data, that is, it does not account for the different covariances between different images in the dataset {\color{red} TODO re-word}.
 
-We define a metric that gives a notion of distance between two underlying clean images $X_1$ and $X_2$. In our statistical model, the underlying clean images $X_1, X_2, \ldots X_n$ (where $n$ is the total number of images) are assumed to be independent, identically distributed (i.i.d.) samples drawn from a Gaussian distribution. Further, we assume that the noise in our model is additive white Gaussian noise.
-\begin{eqnarray} 
-X_1, X_2  \sim N( {\mu},\Sigma) \nonumber \\ 
-N_1, N_2  \sim N(0,{\sigma}^2 I_n )
-\end{eqnarray}
+The main motivation of this paper is to introduce a Mahalanobis distance for cryo-EM images, as a similarity measure to compute the distance between images belonging to different defocus groups. Moreover, we propose to use this notion of distance to improve the existing class averaging pipeline in \cite{zhao}.
 
-We denote the covariance of $Y_1$ and $Y_2$ by $K_1$ and $K_2$.
+In our statistical model, the underlying clean images $X_1, X_2, \ldots X_n \in \mathbb{C}^{d}$ (where $n$ is the total number of images and $d$ is the total number of pixels in each image) are assumed to be independent, identically distributed (i.i.d.) samples drawn from a Gaussian distribution. Further, we assume that the noise in our model is additive white Gaussian noise. We note that while the assumption of a Gaussian distribution does not hold in practice, it facilitates the derivation of this new measure. The justification of the new measure is its superiority over the older class averaging algorithm, as we demonstrate in Sec. \ref{sec:num}.
+\begin{eqnarray} 
+X_i  \sim \mathcal{N}( {\mu},\Sigma) \nonumber \\ 
+N_i  \sim \mathcal{N}(0,{\sigma}^2 I_d )
+\end{eqnarray}
+We denote the covariance of $Y_i$ by $K_i$.
 \begin{eqnarray}
 % E(Y_1)=H_1 \mu \\ 
-Cov(Y_i) = H_i \Sigma {H_i}^T + {\sigma}^2 I_n = K_i,\quad \text{for} \quad i=1,2 
+Cov(Y_i) = H_i \Sigma {H_i}^T + {\sigma}^2 I_n = K_i,\quad \text{for} \quad i=1,\ldots,n 
 %E(Y_2)=H_2 \mu \\
 %Cov(Y_2) = H_2 \Sigma {H_2}^T + {\sigma}^2 I_n = K_2 
 \end{eqnarray}
-Using the Guassian property, we have the following probability density functions (pdf)
+Using the Guassian property, we have the following probability density functions (pdf) for $i=1,\ldots,n$
 \begin{equation}
 \small{
-f_{X_i}(x_i) = P \exp\{-\frac{1}{2}{(x_i-\mu)}^T {\Sigma}^{-1}(x_i-\mu)\},\tiny{\quad\text{for}\quad i=1,2 }}
+f_{X_i}(x_i) = P \exp\{-\frac{1}{2}{(x_i-\mu)}^T {\Sigma}^{-1}(x_i-\mu)\},}
 \end{equation}
 %\begin{equation}
 %\small{f_{X_2}(x_2) = P \exp\{-\frac{1}{2}{(x_2-\mu)}^T {\Sigma}^{-1}(x_2-\mu)\} }
 %\end{equation}
 \begin{equation}
-\small{f_N(z_i) = Q \exp\{-\frac{1}{2}{(z_i)}^T \frac{1}{\sigma^2}(z_i)\}, z_i=y_i-H_1 x_i,\tiny{\quad\text{for}\quad i=1,2 }}
+\small{f_{N_i}(z_i) = Q \exp\{-\frac{1}{2}{z_i}^T \frac{1}{\sigma^2}z_i\},}
 \end{equation}
 %\begin{equation}
-%\small{f_N(z_2) = Q \exp\{-\frac{1}{2}{(z_2)}^T \frac{1}{\sigma^2} (z_2)\}, z_2=y_2-H_2 x_2}
+%\small{f_N(z_2) = Q \exp\{-\frac{1}{2}{(z_2)}^T \frac{1}{\sigma^2} (z_2)\}, z_2=y_2-H_2 x_2,}
 %\end{equation}
 \begin{equation}
-\small{f_{Y_i}(y_i) = R \exp\{-\frac{1}{2}{(y_i-H_i\mu)}^T {K_1}^{-1}(y_i-H_i\mu)\},\tiny{\quad\text{for}\quad i=1,2 } }
+\small{f_{Y_i}(y_i) = R_i \exp\{-\frac{1}{2}{(y_i-H_i\mu)}^T {K_1}^{-1}(y_i-H_i\mu)\}, }
 \end{equation}
 %\begin{equation}
 %\small{f_{Y_2}(y_2) = R \exp\{-\frac{1}{2}{(y_2-H_2\mu)}^T {K_2}^{-1}(y_2-H_2\mu)\}}
 %\end{equation}
-where $P=\frac{1}{({2\pi})^{\frac{n}{2}}{|\Sigma|}^{\frac{1}{2}}}$, $Q=\frac{1}{({2\pi})^{\frac{n}{2}}\sigma^n}$, and $R=\frac{1}{({2\pi})^{\frac{n}{2}} {|K_1|}^{\frac{1}{2}}}$.
+where $P=\frac{1}{({2\pi})^{\frac{d}{2}}{|\Sigma|}^{\frac{1}{2}}}$, $Q=\frac{1}{({2\pi})^{\frac{d}{2}}\sigma^n}$, and $R_i=\frac{1}{({2\pi})^{\frac{d}{2}} {|K_1|}^{\frac{1}{2}}}$.
 \begin{equation}
- \left[\begin{array}{c} X_1 \\ Y_1 \end{array}\right] = 
-\begin{bmatrix} I & 0 \\ H_1 & I \end{bmatrix} \times \left[ \begin{array}{c} X_1 \\ N_1 \end{array} \right]      
+ \left[\begin{array}{c} X_i \\ Y_i \end{array}\right] = 
+\begin{bmatrix} I & 0 \\ H_i & I \end{bmatrix} \times \left[ \begin{array}{c} X_i \\ N_i \end{array} \right]      
 \end{equation}
 \begin{equation}
- \sim N \left[\begin{bmatrix} \mu \\ H_1 \mu \end{bmatrix}, \begin{bmatrix} \Sigma & \Sigma H_1^T \\ H_1 \Sigma & H_1 \Sigma H_1^T + \sigma^2 I \end{bmatrix} \right]
+ \sim \mathcal{N} \left[\begin{bmatrix} \mu \\ H_i \mu \end{bmatrix}, \begin{bmatrix} \Sigma & \Sigma H_i^T \\ H_i \Sigma & H_i \Sigma H_i^T + \sigma^2 I \end{bmatrix} \right]
 \end{equation}
 \noindent
 Using conditional distributions
  \begin{equation}
-  f_{X_1|Y_1}(x_1|y_1) \sim N(\alpha, L)
+  f_{X_i|Y_i}(x_i|y_i) \sim \mathcal{N}(\alpha_i, L_i)
  \end{equation}
-\begin{equation}
-  f_{X_2|Y_2}(x_2|y_2) \sim N(\beta, M)
- \end{equation}
+%\begin{equation}
+%  f_{X_2|Y_2}(x_2|y_2) \sim N(\beta, M)
+% \end{equation}
 where 
 \begin{equation}
 \small{
-\begin{array}{l}\alpha = \mu + \Sigma H_1^T (H_1 \Sigma H_1^T + \sigma^2 I)^{-1} (y_1 - H_1 \mu) \\ L = \Sigma - \Sigma H_1^T (H_1 \Sigma H_1^T + \sigma^2 I)^{-1} H_1 \Sigma \\ \beta = \mu + \Sigma H_2^T (H_2 \Sigma H_2^T + \sigma^2 I)^{-1} (y_2 - H_2 \mu) \\ M = \Sigma - \Sigma H_2^T (H_2 \Sigma H_2^T + \sigma^2 I)^{-1} H_2 \Sigma        \end{array}}   .
+\begin{array}{l}\alpha_i = \mu + \Sigma H_i^T (H_i \Sigma H_i^T + \sigma^2 I)^{-1} (y_i - H_i \mu) \\ L_i = \Sigma - \Sigma H_i^T (H_i \Sigma H_i^T + \sigma^2 I)^{-1} H_i \Sigma .
+       \end{array}}  
 \end{equation}
 So
 \begin{equation}
-P(x_1 - x_2|y_1, y_2) \sim N(\alpha-\beta, L+M)
+x_i - x_j|y_i, y_j \sim \mathcal{N}(\alpha_i-\alpha_j, L_i+L_j)
 \end{equation}
-Let $x_1 - x_2 = x_3$, and $\alpha -\beta=\gamma$. Then
+Let $x_i - x_j = x_{ij}$, and $\alpha_i -\alpha_j=\alpha_{ij}$. Then, for small $\epsilon$, the probability that the $\ell_p$ distance between $x_i$ and $x_j$ is smaller than $\epsilon$ is
 \begin{align}
-&P(||x_3||_{\infty} < \epsilon|y_1,y_2)   \nonumber
-										 =	 P(||x_3||_{\infty} < \epsilon|y_1,y_2)\\ \nonumber
-										&=   \frac{1}{(2 \pi)^{\frac{n}{2}} |L+M|^ \frac{1}{2}} \times \\ 
+&\Pr(||x_{ij}||_{p} < \epsilon|y_i,y_j)   \nonumber
+										 =	 \Pr(||x_{ij}||_{p} < \epsilon|y_i,y_j)\\ \nonumber
+										&=   \frac{1}{(2 \pi)^{\frac{d}{2}} |L_{i}+L_{j}|^ \frac{1}{2}} \times \\ 
 										& \int_{-\epsilon }^{\epsilon}\exp \{ -\frac{1}{2}(x_3 - \gamma)^T(L+M)^{-1}(x_3 - \gamma\}dx_3 
 \end{align}
 For small $\epsilon$ this is
@@ -222,22 +217,22 @@ For small $\epsilon$ this is
 = \frac{(2 \epsilon)^n}{(2 \pi)^{\frac{n}{2}} |L + M|^{\frac{1}{2}}} \exp\{-\frac{1}{2}\gamma^T(L+M)^{-1}\gamma\} 
 \label{eqn:metr}
 \end{equation}
-So we can define our metric after taking the logarithm on both sides of eqn.(\ref{eqn:metr}), dropping out the constant term, and substituting back $\gamma$:
+So we can define our similarity measure after taking the logarithm on both sides of eqn.(\ref{eqn:metr}), dropping out the constant term, and substituting back $\gamma$:
 \begin{equation}\label{eq:mah_eqn}
  -\frac{1}{2}\log(|L + M|) -\frac{1}{2}(\alpha - \beta)^T(L+M)^{-1}(\alpha -\beta)
 \end{equation}
 
-Notice the resemblance of the second term in eqn. \ref{eq:mah_eqn} to the usual Mahalanobis distance \cite{mah}. This term can be intuitively considered as mapping points from a high dimensional ellipsoid to a high dimensional sphere. It takes into account the anisotropic nature of the covariance matrix of the dataset (in the most general case) by appropriately normalizing/scaling each dimension when computing the distance between two points. Moreover, the first term in eqn. \ref{eq:mah_eqn} corrects for different images belonging to different defocus groups, thereby also taking into account that information is lost at zero crossings of the CTF.
+Notice the resemblance of the second term in eqn. \ref{eq:mah_eqn} to the classical Mahalanobis distance \cite{mah}. This term takes into account the anisotropic nature of the covariance matrix by appropriately normalizing/scaling each dimension when computing the distance between two points. Note that this distance is different for different pairs of points since it depends on $L_i + L_j$, unlike the Mahalanobis distance. Upto the first term, the similarity measure defined here is closely related to the one in \cite{nlica}. 
 
 \section{Algorithm for Improved Class Averaging using Mahalanobis Distance}
 
-We propose an improved class averaging algorithm that incorporates the Mahalanobis distance. The quantities $\alpha$, $\beta$, $L$, $M$ are computed for each image and defocus group respectively (in practice $\Sigma$ is replaced by its estimate $\hat{\Sigma}$), using CWF \cite{cwf}. The estimated covariance using CWF is block diagonal in the Fourier Bessel basis. In practice, we use $\alpha$, $\beta$, $L$, $M$ projected onto the subspace spanned by the principal components (for each angular frequency block). We obtain an initial list of $S$ nearest neighbors for each image using the Initial Classification algorithm in \cite{zhao1}. Then, for the list of nearest neighbors corresponding to each image, the Mahalanobis distance is computed and used to pick the closest $K$ nearest neighbors, where $K<S$. The details of the algorithm are listed in Algorithm \ref{alg:classav}. 
+We propose an improved class averaging algorithm that incorporates the Mahalanobis distance. The quantities $\alpha_i$, $L_i$ are computed for each image and defocus group respectively (in practice $\Sigma$ is replaced by its estimate $\hat{\Sigma}$), using CWF \cite{cwf}. The estimated covariance using CWF is block diagonal in the Fourier Bessel basis. In practice, we use $\alpha_i$, $L_i$ projected onto the subspace spanned by the principal components (for each angular frequency block). We obtain an initial list of $S$ nearest neighbors for each image using the Initial Classification algorithm in \cite{zhao}. Then, for the list of nearest neighbors corresponding to each image, the Mahalanobis distance is computed and used to pick the closest $K$ nearest neighbors, where $K<S$. The details of the algorithm are listed in Algorithm \ref{alg:classav}. 
 
 \begin{algorithm}
 \caption{Improved Class Averaging }
 \label{alg:classav}
 \begin{algorithmic}[1]
-\Procedure{Initial Classification \cite{zhao1}}{}
+\Procedure{Initial Classification \cite{zhao}}{}
 \State Image compression and denoising: compute Fourier Bessel steerable basis for images \cite{ffbspca}
 \State Rotationally invariant features: compute the bispectrum from denoised coefficients in the steerable basis
 \State Randomized PCA\cite{rokhlin} of high dimensional feature vectors from the bispectrum
@@ -246,7 +241,7 @@ We propose an improved class averaging algorithm that incorporates the Mahalanob
 \State Obtain a list of $S$ nearest neighbor suspects for each image
 \EndProcedure
 \Procedure{Classification using Mahalonobis Distance}{}
-\State Compute the quantities $\alpha, \beta, L, M$ using estimates from Covariance Wiener Filtering (CWF) \cite{cwf}
+\State Compute the quantities $\alpha_i, L_i$ using estimates from Covariance Wiener Filtering (CWF) \cite{cwf}
 \State For each image and its $S$ aligned nearest neighbors, compute the Mahalanobis distance between the image and neighbors
 \State Rank $S$ suspects according to the Mahalanobis distance, and choose the top $K$ as nearest neighbors
 \EndProcedure
@@ -255,10 +250,11 @@ We propose an improved class averaging algorithm that incorporates the Mahalanob
 \end{algorithmic}
 \end{algorithm}
 
-
+{\color{red} Add images for simulation}
 \section{Numerical experiments}
+\label{sec:num}
 
-We test the improved class averaging algorithm on a synthetic dataset that consists of projection images generated from the volume of P. falciparum 80S ribosome bound to E-tRNA, available on the Electron Microscopy Data Bank (EMDB) as EMDB 6454.The algorithm was implemented in the UNIX environment, on a machine with total RAM of 1.5 TB, running at 2.3 GHz, and with 60 cores. 
+We test the improved class averaging algorithm on a synthetic dataset that consists of projection images generated from the volume of P. falciparum 80S ribosome bound to E-tRNA, available on the Electron Microscopy Data Bank (EMDB) as EMDB 6454. The algorithm was implemented in the UNIX environment, on a machine with total RAM of 1.5 TB, running at 2.3 GHz, and with 60 cores. 
 For the results described here, we used $10000$ projection images of size $65 \times 65$ that were affected by the various CTF's and additive white Gaussian noise at various noise levels, in particular, we show here results for 4 values of the SNR. The images were divided into $20$ defocus groups. Initial classification was first used to select $S=50$ nearest neighbors for each image. After rotationally aligning the suspected neighbors, the Mahalanobis distance was computed between each image and the $50$ aligned suspects. We then pick the closest $K=10$ neighbors for each image. For comparison, we compute $10$ nearest neighbors for each image using only Initial Classification (with or without using the optional VDM step). Table \ref{table:1} shows the number of pairs of nearest neighbor images detected with each method at various SNR's, that have correlation $>0.9$ between the original clean images, indicating that they are indeed neighbors. We note an improvement in the number of true nearest neighbors detected by the improved classification algorithm using the Mahalanobis distance. Figure \ref{fig:hist} shows the estimated probability density function of the angular distance between nearest neighbor images, using 1) Initial Classification only 2) Improved classification using the Mahalanobis distance by repeating this experiment at four different SNR's. 
 
 \begin{table}[]
@@ -269,7 +265,7 @@ using 10000 images, $K=10$ and $S=50$.
 \label{table:1}
 \begin{tabular}{lllll}
       & \multicolumn{2}{l}{VDM} & \multicolumn{2}{l}{No VDM} \\ \cline{2-5} 
-SNR   & New        & Old        & New          & Old         \\ \cline{2-5} 
+SNR   & This work        & \cite{zhao}        & This work          & \cite{zhao}         \\ \cline{2-5} 
 %1/40 & 58361          & 56758          & 56831            & 49347       \\
 1/60  & 34965          & 32113          & 34537            & 29219       \\
 1/100 & 17262      & 14431      & 16057        & 13706        \\ \cline{2-5} 
@@ -288,12 +284,9 @@ SNR   & New        & Old        & New          & Old         \\ \cline{2-5}
 \label{fig:hist}
 \end{figure}
 
-\section{Future Work}
-The Mahalonobis distance proposed here can be used as a metric for any manifold learning procedure \cite{intgeom, nlica} such as diffusion maps \cite{vdm, difmap}, with or without missing data.
-
-\section{Conclusion}
-
-
+\section{Discussion}
+In this paper, we introduced a new similarity measure to compare CTF-affected cryo-EM images belonging to different defocus groups. {\color{red} TODO: mentioning that the resemblance of the affinity/similarity measure that was proposed in [20] and that in this work we provided a new probabilistic interpretation for it. }
+The Mahalonobis distance proposed here can be used as a similarity measure for any manifold learning procedure \cite{intgeom, nlica} such as diffusion maps \cite{vdm, difmap}, with or without missing data.
 
 % References should be produced using the bibtex program from suitable
 % BiBTeX files (here: strings, refs, manuals). The IEEEbib.bst bibliography
