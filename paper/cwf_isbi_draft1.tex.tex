@@ -19,6 +19,7 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{algorithm}
+
 \usepackage[noend]{algpseudocode}
 \usepackage{color}
 %\usepackage[linesnumbered,ruled,vlined]{algorithm2e}% http://ctan.org/pkg/algorithm2e
@@ -210,14 +211,13 @@ Let $x_i - x_j = x_{ij}$, and $\alpha_i -\alpha_j=\alpha_{ij}$. Then, for small 
 &\Pr(||x_{ij}||_{p} < \epsilon|y_i,y_j)   \nonumber
 										 =	 \Pr(||x_{ij}||_{p} < \epsilon|y_i,y_j)\\ \nonumber
 										&=   \frac{1}{(2 \pi)^{\frac{d}{2}} |L_{i}+L_{j}|^ \frac{1}{2}} \times \\ 
-										& \int_{-\epsilon }^{\epsilon}\exp \{ -\frac{1}{2}(x_3 - \alpha_{ij})^T(L+M)^{-1}(x_3 - \alpha_{ij}\}dx_3 
+										& \int_{B_p(0,\epsilon) }^{}\exp \{ -\frac{1}{2}(x_3 - \alpha_{ij})^T(L+M)^{-1}(x_3 - \alpha_{ij}\}dx_3 
 \end{align}
-For small $\epsilon$ this is
 \begin{equation}
-= \frac{(2 \epsilon)^n}{(2 \pi)^{\frac{n}{2}} |L + M|^{\frac{1}{2}}} \exp\{-\frac{1}{2}\alpha_{ij}^T(L+M)^{-1}\alpha_{ij}\} 
+= \frac{\epsilon^d \text{Vol}(B_p(0,1)) }{(2 \pi)^{\frac{n}{2}} |L + M|^{\frac{1}{2}}} \exp\{-\frac{1}{2}\alpha_{ij}^T(L+M)^{-1}\alpha_{ij}\} 
 \label{eqn:metr}
 \end{equation}
-So we can define our similarity measure after taking the logarithm on both sides of eqn.(\ref{eqn:metr}), dropping out the constant term, and substituting back $\gamma$:
+where $B_p(0,\epsilon)$ is the $\ell_p$ ball of radius $\epsilon$ in $\mathbb{R}^d$ centered at the origin. The probability of $\|x_{ij}\|_p < \epsilon$ given the noisy images $y_i$ and $y_j$  is a measure of the likelihood for the underlying clean images $x_i$ and $x_j$ to originate from the same viewing direction. So we can define our similarity measure after taking the logarithm on both sides of eqn.(\ref{eqn:metr}), dropping out the constant term, and substituting back $\alpha_{ij}$:
 \begin{equation}\label{eq:mah_eqn}
  -\frac{1}{2}\log(|L + M|) -\frac{1}{2}(\alpha - \beta)^T(L+M)^{-1}(\alpha -\beta)
 \end{equation}
@@ -232,14 +232,15 @@ We propose an improved class averaging algorithm that incorporates the Mahalanob
 \caption{Improved Class Averaging }
 \label{alg:classav}
 \begin{algorithmic}[1]
-\Procedure{Initial Classification \cite{zhao}}{}
-\State Image compression and denoising: compute Fourier Bessel steerable basis for images \cite{ffbspca}
-\State Rotationally invariant features: compute the bispectrum from denoised coefficients in the steerable basis
-\State Randomized PCA\cite{rokhlin} of high dimensional feature vectors from the bispectrum
-\State Initial nearest neighbor classification and alignment using brute force or fast randomized approximate nearest neighbor search \cite{fastnn}
-%\State (Optional) Improve nearest neighbor classification using Vector Diffusion Maps (VDM) \cite{vdm}
-\State Obtain a list of $S$ nearest neighbor suspects for each image
-\EndProcedure
+\Require  A list of S nearest neighbor suspects for each image using initial classification \cite{zhao}. 
+%\Procedure{Initial Classification \cite{zhao}}{}
+%\State Image compression and denoising: compute Fourier Bessel steerable basis for images \cite{ffbspca}
+%\State Rotationally invariant features: compute the bispectrum from denoised coefficients in the steerable basis
+%\State Randomized PCA\cite{rokhlin} of high dimensional feature vectors from the bispectrum
+%\State Initial nearest neighbor classification and alignment using brute force or fast randomized approximate nearest neighbor search \cite{fastnn}
+%%\State (Optional) Improve nearest neighbor classification using Vector Diffusion Maps (VDM) \cite{vdm}
+%\State Obtain a list of $S$ nearest neighbor suspects for each image
+%\EndProcedure
 \Procedure{Classification using Mahalonobis Distance}{}
 \State Compute the quantities $\alpha_i, L_i$ using estimates from Covariance Wiener Filtering (CWF) \cite{cwf}
 \State For each image and its $S$ aligned nearest neighbors, compute the Mahalanobis distance between the image and neighbors
