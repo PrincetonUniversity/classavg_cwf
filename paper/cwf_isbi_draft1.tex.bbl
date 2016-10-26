@@ -1,5 +1,53 @@
 \begin{thebibliography}{10}
 
+\bibitem{Frank1}
+J.~Frank,
+\newblock {\em Three-Dimensional Electron Microscopy of Macromolecular
+  Assemblies : Visualization of Biological Molecules in Their Native State:
+  Visualization of Biological Molecules in Their Native State},
+\newblock Oxford University Press, USA, 2006.
+
+\bibitem{Kuhlbrandt1443}
+W.~K{\"u}hlbrandt,
+\newblock ``The resolution revolution,''
+\newblock {\em Science}, vol. 343, no. 6178, pp. 1443--1444, 2014.
+
+\bibitem{relion}
+S.~Scheres,
+\newblock ``Semi-automated selection of cryo-em particles in relion-1.3,''
+\newblock {\em Journal of Structural Biology}, vol. 189, no. 2, pp. 114 -- 122,
+  2015.
+
+\bibitem{Penczek1992}
+P.~A. Penczek, M.~Radermacher, and J.~Frank,
+\newblock ``Three-dimensional reconstruction of single particles embedded in
+  ice,''
+\newblock {\em Ultramicroscopy}, vol. 40, pp. 33--53, 1992.
+
+\bibitem{Penczek1996}
+P.~A. Penczek, J.~Zhu, and J.~Frank,
+\newblock ``A common-lines based method for determining orientations for
+  {$N>3$} particle projections simultaneously,''
+\newblock {\em Ultramicroscopy}, vol. 63, no. 3-4, pp. 205--218, 1996.
+
+\bibitem{vanHeel1990a}
+M.~Schatz and M.~van Heel,
+\newblock ``Invariant classification of molecular views in electron
+  micrographs,''
+\newblock {\em Ultramicroscopy}, vol. 32, pp. 255--264, 1990.
+
+\bibitem{vanHeel1981}
+M.~{van Heel} and J.~Frank,
+\newblock ``Use of multivariate statistics in analysing the images of
+  biological macromolecules,''
+\newblock {\em Ultramicroscopy}, vol. 6, no. 2, pp. 187--194, 1981.
+
+\bibitem{Dube1993}
+P.~Dube, P.~Tavares, R.~Lurz, and M.~van Heel,
+\newblock ``Bacteriophage {SPP}1 portal protein: a {DNA} pump with 13-fold
+  symmetry,''
+\newblock {\em EMBO J.}, vol. 15, pp. 1303--1309, 1993.
+
 \bibitem{zhao}
 Z.~Zhao and A.~Singer,
 \newblock ``Rotationally invariant image representation for viewing direction
@@ -7,20 +55,8 @@ Z.~Zhao and A.~Singer,
 \newblock {\em Journal of Structural Biology}, vol. 186, no. 1, pp. 153 -- 166,
   2014.
 
-\bibitem{relion}
-Sjors~H.W. Scheres,
-\newblock ``Semi-automated selection of cryo-em particles in relion-1.3,''
-\newblock {\em Journal of Structural Biology}, vol. 189, no. 2, pp. 114 -- 122,
-  2015.
-
-\bibitem{vdm}
-A.~Singer and H.-T. Wu,
-\newblock ``Vector diffusion maps and the connection laplacian,''
-\newblock {\em Communications on Pure and Applied Mathematics}, vol. 65, no. 8,
-  pp. 1067--1144, 2012.
-
 \bibitem{cwf}
-Tejal Bhamre, Teng Zhang, and Amit Singer,
+T.~Bhamre, T.~Zhang, and A.~Singer,
 \newblock ``Denoising and covariance estimation of single particle cryo-em
   images,''
 \newblock {\em Journal of Structural Biology}, vol. 195, no. 1, pp. 72 -- 81,
@@ -34,33 +70,39 @@ P.~C. Mahalanobis,
 
 \bibitem{frankbook}
 Joachim Frank,
-\newblock ``Chapter 2 - electron microscopy of macromolecular assemblies,''
+\newblock ``Electron microscopy of macromolecular assemblies,''
 \newblock in {\em Three-Dimensional Electron Microscopy of Macromolecular
-  Assemblies}, Joachim Frank, Ed., pp. 12 -- 53. Academic Press, Burlington,
-  1996.
+  Assemblies}, J.~Frank, Ed., pp. 12 -- 53. Academic Press, Burlington, 1996.
 
-\bibitem{frankctf}
-Joachim Frank,
-\newblock ``Chapter 3 - electron microscopy of macromolecular assemblies,''
-\newblock in {\em Three-Dimensional Electron Microscopy of Macromolecular
-  Assemblies}, Joachim Frank, Ed., p.~43. Academic Press, Burlington, 1996.
+\bibitem{rokhlin}
+V.~Rokhlin, A.~Szlam, and M.~Tygert,
+\newblock ``A randomized algorithm for principal component analysis,''
+\newblock {\em SIAM Journal on Matrix Analysis and Applications}, vol. 31, no.
+  3, pp. 1100--1124, 2010.
+
+\bibitem{vdm}
+A.~Singer and H.-T. Wu,
+\newblock ``Vector diffusion maps and the connection laplacian,''
+\newblock {\em Communications on Pure and Applied Mathematics}, vol. 65, no. 8,
+  pp. 1067--1144, 2012.
 
 \bibitem{mahclust1}
-Shiming Xiang, Feiping Nie, and Changshui Zhang,
+S.~Xiang, F.~Nie, and C.~Zhang,
 \newblock ``Learning a mahalanobis distance metric for data clustering and
   classification,''
 \newblock {\em Pattern Recognition}, vol. 41, no. 12, pp. 3600 -- 3612, 2008.
 
 \bibitem{mahclust2}
-Xuemei Zhao, Yu~Li, and Quanhua Zhao,
+X.~Zhao, Y.~Li, and Q.~Zhao,
 \newblock ``Mahalanobis distance based on fuzzy clustering algorithm for image
   segmentation,''
 \newblock {\em Digit. Signal Process.}, vol. 43, no. C, pp. 8--16, Aug. 2015.
 
-\bibitem{zhao1}
-Z.~Zhao and A.~Singer,
-\newblock ``Fourier {Bessel} rotational invariant eigenimages,''
-\newblock {\em J. Opt. Soc. Am. A}, vol. 30, no. 5, pp. 871--877, May 2013.
+\bibitem{nlica}
+A.~Singer and R.~R. Coifman,
+\newblock ``Non-linear independent component analysis with diffusion maps,''
+\newblock {\em Applied and Computational Harmonic Analysis}, vol. 25, no. 2,
+  pp. 226 -- 239, 2008.
 
 \bibitem{ffbspca}
 Z.~Zhao, Y.~Shkolnisky, and A.~Singer,
@@ -68,33 +110,21 @@ Z.~Zhao, Y.~Shkolnisky, and A.~Singer,
 \newblock {\em IEEE Transactions on Computational Imaging}, vol. 2, no. 1, pp.
   1--12, March 2016.
 
-\bibitem{rokhlin}
-Vladimir Rokhlin, Arthur Szlam, and Mark Tygert,
-\newblock ``A randomized algorithm for principal component analysis,''
-\newblock {\em SIAM Journal on Matrix Analysis and Applications}, vol. 31, no.
-  3, pp. 1100--1124, 2010.
-
 \bibitem{fastnn}
-Peter~Wilcox Jones, Andrei Osipov, and Vladimir Rokhlin,
+P.W. Jones, A.~Osipov, and V.~Rokhlin,
 \newblock ``Randomized approximate nearest neighbors algorithm,''
 \newblock {\em Proceedings of the National Academy of Sciences}, vol. 108, no.
   38, pp. 15679--15686, 2011.
 
 \bibitem{intgeom}
-Ronen Talmon and Ronald~R. Coifman,
+R.~Talmon and R.R. Coifman,
 \newblock ``Empirical intrinsic geometry for nonlinear modeling and time series
   filtering,''
 \newblock {\em Proceedings of the National Academy of Sciences}, vol. 110, no.
   31, pp. 12535--12540, 2013.
 
-\bibitem{nlica}
-Amit Singer and Ronald~R. Coifman,
-\newblock ``Non-linear independent component analysis with diffusion maps,''
-\newblock {\em Applied and Computational Harmonic Analysis}, vol. 25, no. 2,
-  pp. 226 -- 239, 2008.
-
 \bibitem{difmap}
-Ronald~R. Coifman and Stéphane Lafon,
+R.R. Coifman and S.~Lafon,
 \newblock ``Diffusion maps,''
 \newblock {\em Applied and Computational Harmonic Analysis}, vol. 21, no. 1,
   pp. 5 -- 30, 2006.
