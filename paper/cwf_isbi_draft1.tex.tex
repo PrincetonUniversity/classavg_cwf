@@ -88,7 +88,7 @@ SPR from cryo-EM is a rapidly advancing technique in structural biology to deter
 the 3D structures of macromolecular complexes in their native state \cite{Frank1, Kuhlbrandt1443},
  without the need for crystallization. First, the sample, consisting of randomly oriented, nearly identical copies of a macromolecule, is frozen in a thin ice layer. An electron microscope is used to acquire top view images of the sample, in the form of a large image called a 'micrograph', from which individual particle images are picked semi-automatically. After preprocessing the sleetced raw particle images, the images are next classified, and images within each class are averaged, (a step known as "class averaging"), to obtain a single image per class, that enjoys a higher SNR than the individual images. To minimize radiation damage, cryo-EM imaging must be constrained to low electron doses, which results in a very low SNR in the acquired 2D projection images. Class averaging is thus a crucial step in the SPR pipeline; class averages are used for a preliminary inspection of the dataset, to eliminate outliers, and in semi-automated particle picking \cite{relion}. Typically, a user manually picks particles from a small number of micrographs. These are used to compute class averages, which are further used as templates to pick particles from all micrographs. A second round of class averaging needs to be performed to identify and discard outliers after this step. The resulting class averages enjoy a much higher SNR than the input raw images, thereby allowing inspection of the dataset and elimination of outliers. Class averages are used for subsequent stages of the SPR pipelines, such as orientation estimation, and finally, determination of the 3D structure.
  
-The two popular approaches for 2D class averaging \cite{Penczek1992,Penczek1996, vanHeel1990a, vanHeel1981} in cryo-EM are multivariate statistical analysis (MSA)\cite{vanHeel1981} with multi-reference alignment (MRA) \cite{Dube1993} and iterative reference-free alignment using K-means clustering \cite{Penczek1996}. {\color{red} TODO}
+The two popular approaches for 2D class averaging \cite{Penczek1992,Penczek1996, vanHeel1990a, vanHeel1981} in cryo-EM are multivariate statistical analysis (MSA)\cite{vanHeel1981} with multi-reference alignment (MRA) \cite{Dube1993} and iterative reference-free alignment using K-means clustering \cite{Penczek1996}. Popular cryo-EM packages like RELION, XMIPP, EMAN2, SPIDER, SPARX, IMAGIC) use some of these methods for class averaging. RELION uses a maximum likelihood classification procedure. {\color{red} TODO citations}  
 
 In \cite{zhao}, the authors introduced a new, fast approach for 2D class averaging, based on a new rotationally invariant representation to compute the similarity between pairs of cryo-EM images.
 
@@ -209,17 +209,17 @@ x_i - x_j|y_i, y_j \sim \mathcal{N}(\alpha_i-\alpha_j, L_i+L_j)
 Let $x_i - x_j = x_{ij}$, and $\alpha_i -\alpha_j=\alpha_{ij}$. Then, for small $\epsilon$, the probability that the $\ell_p$ distance between $x_i$ and $x_j$ is smaller than $\epsilon$ is
 \begin{align}
 &\Pr(||x_{ij}||_{p} < \epsilon|y_i,y_j)   \nonumber
-										 =	 \Pr(||x_{ij}||_{p} < \epsilon|y_i,y_j)\\ \nonumber
-										&=   \frac{1}{(2 \pi)^{\frac{d}{2}} |L_{i}+L_{j}|^ \frac{1}{2}} \times \\ 
+%										 =	 %\Pr(||x_{ij}||_{p} < \epsilon|y_i,y_j)\\ %%\nonumber
+										=   \frac{1}{(2 \pi)^{\frac{d}{2}} |L_{i}+L_{j}|^ \frac{1}{2}} \times \\ 
 										& \int_{B_p(0,\epsilon) }^{}\exp \{ -\frac{1}{2}(x_3 - \alpha_{ij})^T(L+M)^{-1}(x_3 - \alpha_{ij}\}dx_3 
 \end{align}
 \begin{equation}
-= \frac{\epsilon^d \text{Vol}(B_p(0,1)) }{(2 \pi)^{\frac{n}{2}} |L + M|^{\frac{1}{2}}} \exp\{-\frac{1}{2}\alpha_{ij}^T(L+M)^{-1}\alpha_{ij}\} 
+= \frac{\epsilon^d \text{Vol}(B_p(0,1)) }{(2 \pi)^{\frac{n}{2}} |L + M|^{\frac{1}{2}}} \exp\{-\frac{1}{2}\alpha_{ij}^T(L+M)^{-1}\alpha_{ij}\} +  \mathcal{O}(\epsilon^{d+1}) 
 \label{eqn:metr}
 \end{equation}
 where $B_p(0,\epsilon)$ is the $\ell_p$ ball of radius $\epsilon$ in $\mathbb{R}^d$ centered at the origin. The probability of $\|x_{ij}\|_p < \epsilon$ given the noisy images $y_i$ and $y_j$  is a measure of the likelihood for the underlying clean images $x_i$ and $x_j$ to originate from the same viewing direction. So we can define our similarity measure after taking the logarithm on both sides of eqn.(\ref{eqn:metr}), dropping out the constant term, and substituting back $\alpha_{ij}$:
 \begin{equation}\label{eq:mah_eqn}
- -\frac{1}{2}\log(|L + M|) -\frac{1}{2}(\alpha - \beta)^T(L+M)^{-1}(\alpha -\beta)
+ -\frac{1}{2}\log(|L_i + L_j|) -\frac{1}{2}(\alpha_i - \alpha_j)^T(L_i+L_j)^{-1}(\alpha_i -\alpha_j)
 \end{equation}
 
 Notice the resemblance of the second term in eqn. \ref{eq:mah_eqn} to the classical Mahalanobis distance \cite{mah}. This term takes into account the anisotropic nature of the covariance matrix by appropriately normalizing/scaling each dimension when computing the distance between two points. Note that this distance is different for different pairs of points since it depends on $L_i + L_j$, unlike the Mahalanobis distance. Upto the first term, the similarity measure defined here is closely related to the one in \cite{nlica}. 
