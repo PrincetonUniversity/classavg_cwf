@@ -1,4 +1,4 @@
-function [ shifts, corr, average, norm_variance, class_met, class_refl_met, angle_met ] = align_main_cwf( data, angle, class_VDM, refl, FBsPCA_data, k, max_shifts, list_recon, recon_sPCA, data_cwf, def_grp, num_nn)
+function [ shifts, corr, avg_final, avg_old, norm_variance, class_met, class_refl_met, angle_met ] = align_main_cwf( data, angle, class_VDM, refl, FBsPCA_data, k, max_shifts, list_recon, recon_sPCA, data_cwf, def_grp, num_nn)
 % Function for aligning images with its k nearest neighbors to generate
 % class averages.
 %   Input: 
@@ -80,6 +80,7 @@ if ps==0
   parpool('local',12);
 end
 
+avg_final=zeros(L,L,length(list_recon));
 
 parfor j=1:length(list_recon)
     
@@ -194,7 +195,15 @@ parfor j=1:length(list_recon)
     class_refl_met(j,:)=refl_j(:,new_nn);
     angle_met(j,:)=angle_j(:,new_nn);
     shifts(j, :)=-shifts_list(id, 1) - sqrt(-1)*shifts_list(id, 2);
+    top_knn=new_nn(1:num_nn);
+    pf_images_final=pf_images(:,top_knn);
+    avg_tmp=mean(pf_images_final,2);
+    avg_tmp=reshape(avg_tmp,L,L);
+    avg_final(:,:,j)=icfft2(avg_tmp);
 
+    avg_tmp=mean(pf_images(:,1:num_nn),2);
+    avg_tmp=reshape(avg_tmp,L,L);
+    avg_old(:,:,j)=icfft2(avg_tmp);	
 end
 
 % Select top num_nn nearest neighbors using metric
