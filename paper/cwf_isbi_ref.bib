@@ -27,6 +27,107 @@ year = {2004},
 	journal = {Science}
 }
 
+@article{imagic,
+title = "A New Generation of the IMAGIC Image Processing System",
+journal = "Journal of Structural Biology",
+volume = "116",
+number = "1",
+pages = "17 - 24",
+year = "1996",
+note = "",
+issn = "1047-8477",
+doi = "http://dx.doi.org/10.1006/jsbi.1996.0004",
+url = "http://www.sciencedirect.com/science/article/pii/S1047847796900040",
+author = "Marin van Heel and George Harauz and Elena V. Orlova and Ralf Schmidt and Michael Schatz",
+abstract = "One of the aims of modern microscopy is to quantify two-, three-, or even four-dimensional phenomena in biology, medicine, and material sciences. The requirements imposed on software by such data processing are exemplified by the design considerations of the IMAGIC-5 software system. This system includes facilities for multivariate statistical analysis of large data sets, for correlation averaging of two-dimensional crystals, and for three-dimensional reconstruction of macromolecular structures. The molecules may be arranged as two-dimensional crystals, as helices, or as single particles with arbitrary pointgroup symmetry. IMAGIC's novel angular reconstitution approach allows for the rapid determination of three-dimensional structures of uncrystallized molecules to high resolution. The general organization, user interaction strategy, file structure, and extendibility of IMAGIC are discussed and illustrated with some practical examples."
+}
+
+@article{spider,
+    author = {Shaikh, Tanvir R. and Gao, Haixiao and Baxter, William T. and Asturias, Francisco J. and Boisset, Nicolas and Leith, Ardean and Frank, Joachim},
+    citeulike-article-id = {6756381},
+    citeulike-linkout-0 = {http://www.nature.com/doifinder/10.1038/nprot.2008.156},
+    citeulike-linkout-1 = {http://dx.doi.org/10.1038/nprot.2008.156},
+    doi = {10.1038/nprot.2008.156},
+    journal = {Nature Protocols},
+    keywords = {cryoet},
+    number = {12},
+    pages = {1941--1974},
+    posted-at = {2010-03-03 09:43:45},
+    priority = {3},
+    title = {{SPIDER} image processing for single-particle reconstruction of biological macromolecules from electron micrographs},
+    url = {http://www.nature.com/doifinder/10.1038/nprot.2008.156},
+    volume = {3},
+    year = {2008}
+}
+
+@article{eman2,
+title = "EMAN2: An extensible image processing suite for electron microscopy ",
+journal = "Journal of Structural Biology ",
+volume = "157",
+pages = "38 - 46",
+year = "2007",
+note = "Software tools for macromolecular microscopy ",
+issn = "1047-8477",
+doi = "http://dx.doi.org/10.1016/j.jsb.2006.05.009",
+url = "http://www.sciencedirect.com/science/article/pii/S1047847706001894",
+author = "Guang Tang and Liwei Peng and Philip R. Baldwin and Deepinder S. Mann and Wen Jiang and Ian Rees and Steven J. Ludtke",
+keywords = "EMAN",
+keywords = "Single particle analysis",
+keywords = "cryoEM",
+keywords = "TEM",
+keywords = "Software",
+keywords = "Image processing",
+keywords = "Electron microscopy ",
+abstract = "\{EMAN\} is a scientific image processing package with a particular focus on single particle reconstruction from transmission electron microscopy (TEM) images. It was first released in 1999, and new versions have been released typically 2?3 times each year since that time. \{EMAN2\} has been under development for the last two years, with a completely refactored image processing library, and a wide range of features to make it much more flexible and extensible than EMAN1. The user-level programs are better documented, more straightforward to use, and written in the Python scripting language, so advanced users can modify the programs? behavior without any recompilation. A completely rewritten 3D transformation class simplifies translation between Euler angle standards and symmetry conventions. The core C++ library has over 500 functions for image processing and associated tasks, and it is modular with introspection capabilities, so programmers can add new algorithms with minimal effort and programs can incorporate new capabilities automatically. Finally, a flexible new parallelism system has been designed to address the shortcomings in the rigid system in EMAN1. "
+}
+
+@article{xmipp,
+title = "Xmipp: An Image Processing Package for Electron Microscopy",
+journal = "Journal of Structural Biology",
+volume = "116",
+number = "1",
+pages = "237 - 240",
+year = "1996",
+note = "",
+issn = "1047-8477",
+doi = "http://dx.doi.org/10.1006/jsbi.1996.0036",
+url = "http://www.sciencedirect.com/science/article/pii/S1047847796900362",
+author = "R. Marabini and I.M. Masegosa and M.C. San Mart??n and S. Marco and J.J. Fernández and L.G. de la Fraga and C. Vaquerizo and J.M. Carazo",
+abstract = "We present in this article a specialized suite of image processing programs primarily aimed at obtaining the three-dimensional reconstruction of biological specimens from large sets of projection images obtained by transmission electron microscopy. The programs are written in ANSI-C and use X-Windows for graphical output. A number of parallel extensions using PVM and PARMACS are provided. The programs are freely available by anonymous ftp at ftp.cnb.uam.es."
+}
+
+@article{relion,
+title = "RELION: Implementation of a Bayesian approach to cryo-EM structure determination ",
+journal = "Journal of Structural Biology ",
+volume = "180",
+number = "3",
+pages = "519 - 530",
+year = "2012",
+note = "",
+issn = "1047-8477",
+doi = "http://dx.doi.org/10.1016/j.jsb.2012.09.006",
+url = "http://www.sciencedirect.com/science/article/pii/S1047847712002481",
+author = "Sjors H.W. Scheres",
+keywords = "Electron microscopy",
+keywords = "Single-particle analysis",
+keywords = "Maximum likelihood",
+keywords = "Image processing",
+keywords = "Software development ",
+abstract = "RELION, for \{REgularized\} \{LIkelihood\} OptimizatioN, is an open-source computer program for the refinement of macromolecular structures by single-particle analysis of electron cryo-microscopy (cryo-EM) data. Whereas alternative approaches often rely on user expertise for the tuning of parameters, \{RELION\} uses a Bayesian approach to infer parameters of a statistical model from the data. This paper describes developments that reduce the computational costs of the underlying maximum a posteriori (MAP) algorithm, as well as statistical considerations that yield new insights into the accuracy with which the relative orientations of individual particles may be determined. A so-called gold-standard Fourier shell correlation (FSC) procedure to prevent overfitting is also described. The resulting implementation yields high-quality reconstructions and reliable resolution estimates with minimal user intervention and at acceptable computational costs. "
+}
+
+@article {gpurelion,
+	author = {Kimanius, Dari and Forsberg, Bjorn O and Scheres, Sjors and Lindahl, Erik},
+	title = {Accelerated cryo-EM structure determination with parallelisation using GPUs in RELION-2},
+	year = {2016},
+	doi = {10.1101/059717},
+	publisher = {Cold Spring Harbor Labs Journals},
+	abstract = {By reaching near-atomic resolution for a wide range of specimens, single-particle cryo-EM structure determination is transforming struc- tural biology. However, the necessary calculations come at increased computational costs, introducing a bottleneck that is currently limiting throughput and the development of new methods. Here, we present an implementation of the relion image processing software that uses graphics processors (GPUs) to address the most computationally intensive steps of its cryo-EM structure determination workflow. Both image classification and high-resolution refinement have been accelerated up to 40-fold, and template-based particle selection has been accelerated almost 1000-fold on desktop hardware. Memory requirements on GPUs have been reduced to fit widely available hard- ware, and we show that the use of single precision arithmetic does not adversely affect results. This enables high-resolution cryo-EM struc- ture determination in a matter of days on a single workstation.},
+	URL = {http://biorxiv.org/content/early/2016/06/19/059717},
+	eprint = {http://biorxiv.org/content/early/2016/06/19/059717.full.pdf},
+	journal = {bioRxiv}
+}
+
 
 @ARTICLE{Penczek1992,
   author = {Penczek, P. A. and Radermacher, M. and Frank, J.},
