@@ -19,7 +19,7 @@ figure(1);
 plot(x_sc,CTF(floor(L/2)+1,floor(L/2)+1:end,1),'b-', x_sc,CTF(floor(L/2)+1,floor(L/2)+1:end,2),'r-', x_sc,CTF(floor(L/2)+1,floor(L/2)+1:end,3),'g-','LineWidth',1.5 );
 axis tight
 pbaspect([2 1 1])
-set(gca,'XTickLabel',[0,0.1,0.2,0.3,0.4,0.5])
+%set(gca,'XTickLabel',[0,0.1,0.2,0.3,0.4,0.5])
 ylim([-1,1])
 legend({'def=1\mum', 'def=1.3\mum', 'def=1.6\mum'},'location','NorthWest', 'Box', 'off','FontSize',9);
 xlabel('Spatial frequency (1/pixel size)','FontSize',11);
