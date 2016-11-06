@@ -13,7 +13,7 @@ W.~K{\"u}hlbrandt,
 \newblock {\em Science}, vol. 343, no. 6178, pp. 1443--1444, 2014.
 
 \bibitem{relion}
-Sjors~H.W. Scheres,
+S.~H.~W. Scheres,
 \newblock ``Relion: Implementation of a bayesian approach to cryo-em structure
   determination,''
 \newblock {\em Journal of Structural Biology}, vol. 180, no. 3, pp. 519 -- 530,
@@ -50,15 +50,14 @@ P.~Dube, P.~Tavares, R.~Lurz, and M.~van Heel,
 \newblock {\em EMBO J.}, vol. 15, pp. 1303--1309, 1993.
 
 \bibitem{imagic}
-Marin van Heel, George Harauz, Elena~V. Orlova, Ralf Schmidt, and Michael
-  Schatz,
+van~Heel M, G.~Harauz, E.~V. Orlova, R.~Schmidt, and M.~Schatz,
 \newblock ``A new generation of the imagic image processing system,''
 \newblock {\em Journal of Structural Biology}, vol. 116, no. 1, pp. 17 -- 24,
   1996.
 
 \bibitem{spider}
-Tanvir~R. Shaikh, Haixiao Gao, William~T. Baxter, Francisco~J. Asturias,
-  Nicolas Boisset, Ardean Leith, and Joachim Frank,
+T.~R. Shaikh, H.~Gao, W.~T. Baxter, Francisco~J. A., N.~Boisset, A.~Leith, and
+  J.~Frank,
 \newblock ``{SPIDER} image processing for single-particle reconstruction of
   biological macromolecules from electron micrographs,''
 \newblock {\em Nature Protocols}, vol. 3, no. 12, pp. 1941--1974, 2008.
@@ -79,7 +78,7 @@ R.~Marabini, I.M. Masegosa, M.C.~San Mart??n, S.~Marco, J.J. Fernández, L.G.
   1996.
 
 \bibitem{gpurelion}
-Dari Kimanius, Bjorn~O Forsberg, Sjors Scheres, and Erik Lindahl,
+D.~Kimanius, B.~O. Forsberg, S.~Scheres, and E.~Lindahl,
 \newblock ``Accelerated cryo-em structure determination with parallelisation
   using gpus in relion-2,''
 \newblock {\em bioRxiv}, 2016.
@@ -105,7 +104,7 @@ P.~C. Mahalanobis,
   vol.~2, pp. 49--55.
 
 \bibitem{frankbook}
-Joachim Frank,
+J.~Frank,
 \newblock ``Electron microscopy of macromolecular assemblies,''
 \newblock in {\em Three-Dimensional Electron Microscopy of Macromolecular
   Assemblies}, J.~Frank, Ed., pp. 12 -- 53. Academic Press, Burlington, 1996.
@@ -115,12 +114,6 @@ V.~Rokhlin, A.~Szlam, and M.~Tygert,
 \newblock ``A randomized algorithm for principal component analysis,''
 \newblock {\em SIAM Journal on Matrix Analysis and Applications}, vol. 31, no.
   3, pp. 1100--1124, 2010.
-
-\bibitem{vdm}
-A.~Singer and H.-T. Wu,
-\newblock ``Vector diffusion maps and the connection laplacian,''
-\newblock {\em Communications on Pure and Applied Mathematics}, vol. 65, no. 8,
-  pp. 1067--1144, 2012.
 
 \bibitem{mahclust1}
 S.~Xiang, F.~Nie, and C.~Zhang,
@@ -146,6 +139,12 @@ R.~Talmon and R.R. Coifman,
   filtering,''
 \newblock {\em Proceedings of the National Academy of Sciences}, vol. 110, no.
   31, pp. 12535--12540, 2013.
+
+\bibitem{vdm}
+A.~Singer and H.-T. Wu,
+\newblock ``Vector diffusion maps and the connection laplacian,''
+\newblock {\em Communications on Pure and Applied Mathematics}, vol. 65, no. 8,
+  pp. 1067--1144, 2012.
 
 \bibitem{difmap}
 R.R. Coifman and S.~Lafon,
