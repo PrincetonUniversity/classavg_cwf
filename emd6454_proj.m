@@ -3,8 +3,8 @@
 %is 129x129 pixels.
 pathstr='/scratch/ARCHIVE_from_sdl6/tbhamre/cwf_class/';
 
-K = 10000; %K is the number of images
-max_shift = 3; %maximum shift range
+K = 100000; %K is the number of images
+max_shift = 0; %maximum shift range
 step_size = 1;
 initstate;
 q = qrand(K);
@@ -26,5 +26,5 @@ data.shifts=shifts;
 %downsampleddim=65;
 %sprintf('Downsampling to %dX%d grid', downsampleddim, downsampleddim)
 %data.projections=cryo_downsample(data.projections,[downsampleddim downsampleddim],1);
-save(fullfile(pathstr,'clean_data_6454_65_shift3'), '-v7.3', 'data')
+save(fullfile(pathstr,'clean_data_6454_65_100k'), '-v7.3', 'data')
 %clear all;
