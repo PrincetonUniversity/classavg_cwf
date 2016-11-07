@@ -21,7 +21,7 @@ axis tight
 pbaspect([2 1 1])
 %set(gca,'XTickLabel',[0,0.1,0.2,0.3,0.4,0.5])
 ylim([-1,1])
-legend({'def=1\mum', 'def=1.3\mum', 'def=1.6\mum'},'location','NorthWest', 'Box', 'off','FontSize',9);
-xlabel('Spatial frequency (1/pixel size)','FontSize',11);
-ylabel('CTF','FontSize',11);
+legend({'def=1\mum', 'def=1.3\mum', 'def=1.6\mum'},'location','NorthWest', 'Box', 'off','FontSize',10);
+xlabel('Spatial frequency (1/pixel size)','FontSize',13);
+ylabel('CTF','FontSize',13);
 print('~/cwf_classavg/paper/ctfeg_fig', '-dpng', '-r300'); %<-Save as PNG with 300 DPI
