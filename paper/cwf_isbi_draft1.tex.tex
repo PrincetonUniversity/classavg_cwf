@@ -90,11 +90,11 @@ the 3D structures of macromolecular complexes in their native state \cite{Frank1
  without the need for crystallization. First, the sample, consisting of randomly oriented, nearly identical copies of a macromolecule, is frozen in a thin ice layer. An electron microscope is used to acquire top view images of the sample, in the form of a large image called a 'micrograph', from which individual particle images are picked semi-automatically. After preprocessing the selected raw particle images, the images are next classified, and images within each class are averaged, (a step known as "class averaging"), to obtain a single image per class, that enjoys a higher SNR than the individual images. To minimize radiation damage, cryo-EM imaging must be constrained to low electron doses, which results in a very low SNR in the acquired 2D projection images. Class averaging is thus a crucial step in the SPR pipeline; class averages are used for a preliminary inspection of the dataset, to eliminate outliers, and in semi-automated particle picking \cite{relion}. Typically, a user manually picks particles from a small number of micrographs. These are used to compute class averages, which are further used as templates to pick particles from all micrographs. Class averages are also used in subsequent stages of the SPR pipeline, such as 3D ab-initio modeling.
  
 The two popular approaches for 2D class averaging \cite{Penczek1992,Penczek1996, vanHeel1990a, vanHeel1981} in cryo-EM are multivariate statistical analysis (MSA)\cite{vanHeel1981} with multi-reference alignment (MRA) \cite{Dube1993} and iterative reference-free alignment using K-means clustering \cite{Penczek1996}. Popular cryo-EM packages like RELION, XMIPP, EMAN2, SPIDER, SPARX, IMAGIC \cite{imagic, spider, eman2, xmipp, relion, gpurelion} use some of these methods for class averaging. RELION uses a maximum likelihood classification procedure. 
-In \cite{zhao}, a fast approach for 2D class averaging was introduced based on a new rotationally invariant representation to compute the similarity between pairs of cryo-EM images. The implementation of this method will be available in the cryo-EM software package ASPIRE, available publicly at \url{http://spr.math.princeton.edu/}.
+In \cite{zhao}, a faster and more accurate approach for 2D class averaging was introduced based on a new rotationally invariant representation to compute the similarity between pairs of cryo-EM images. The implementation of this method is available in the cryo-EM software package ASPIRE (\url{http://spr.math.princeton.edu/}).
 
 Recently in \cite{cwf}, it was shown that preliminary inspection of the underlying clean images can in fact be performed at an earlier stage, by better denoising the acquired images using an algorithm called Covariance Wiener Filtering (CWF). In CWF, the covariance matrix of the underlying clean projection images is estimated from their noisy, CTF-affected measurements. This estimated covariance is then used in the classical Wiener deconvolution framework to obtain denoised images, which can be used for a preliminary viewing of the underlying dataset, and outlier detection. 
 
-There are two main contributions of this paper. First, we introduce a new similarity measure, related to the Mahalanobis distance \cite{mah}, to compute the distance between pairs of cryo-EM images. Second, we use the proposed Mahalanobis distance to improve the class averaging algorithm described in \cite{zhao}. We first obtain for each image a list of $S$ other images suspected as nearest neighbors using the rotational invariant representation (see Sec. 2 for details), and then rank these suspects using the Mahalanobis distance. The top $K$ nearest neighbors, where $K<S$, given by this procedure are finally aligned and averaged to produce class averages. We test the new algorithm on a synthetic dataset at various noise levels and observe an improvement in the number of nearest neighbors correctly detected.
+There are two main contributions of this paper. First, we introduce a new similarity measure, related to the Mahalanobis distance \cite{mah}, to compute the similarity of pairs of cryo-EM images. Second, we use the proposed Mahalanobis distance to improve the class averaging algorithm described in \cite{zhao}. We first obtain for each image a list of $S$ other images suspected as nearest neighbors using the rotational invariant representation (see Sec. 2 for details), and then rank these suspects using the Mahalanobis distance. The top $K$ nearest neighbors, where $K<S$, given by this procedure are finally aligned and averaged to produce class averages. We test the new algorithm on a synthetic dataset at various noise levels and observe an improvement in the number of nearest neighbors correctly detected.
 
 \section{Background}
 \subsection{Image Formation Model}
@@ -155,34 +155,40 @@ X_i  \sim \mathcal{N}( {\mu},\Sigma) \nonumber \\
 N_i  \sim \mathcal{N}(0,{\sigma}^2 I_d )
 \end{eqnarray}
 We note that while the assumption of a Gaussian distribution does not hold in practice, it facilitates the derivation of the new measure. The justification of the new measure is its superiority over the existing class averaging algorithm, as we demonstrate in Sec. \ref{sec:num}.
-We denote the covariance of $Y_i$ by $K_i$.
-\begin{eqnarray}
-% E(Y_1)=H_1 \mu \\ 
-Cov(Y_i) = A_i \Sigma {A_i}^T + {\sigma}^2 I_n = K_i,\quad \text{for} \quad i=1,\ldots,n 
-%E(Y_2)=H_2 \mu \\
-%Cov(Y_2) = H_2 \Sigma {H_2}^T + {\sigma}^2 I_n = K_2 
-\end{eqnarray}
-Using the Gaussian property, we have the following probability density functions (pdf) for $i=1,\ldots,n$
+
+The Gaussian assumption on signal and noise (5) and the image formation model (2) imply that $Y_i$ is also Gaussian
 \begin{equation}
-\small{
-f_{X_i}(x_i) = P \exp\{-\frac{1}{2}{(x_i-\mu)}^T {\Sigma}^{-1}(x_i-\mu)\},}
-\end{equation}
+Y_i \sim \mathcal{N}(A_i \mu, A_i \Sigma A_i^T + \sigma^2 I_d),\quad \text{for } i=1,\ldots,n.
+\end{equation} 
+%We denote the covariance of $Y_i$ by $K_i$.
+%\begin{eqnarray}
+%% E(Y_1)=H_1 \mu \\ 
+%Cov(Y_i) = A_i \Sigma {A_i}^T + {\sigma}^2 I_n = K_i,\quad \text{for} \quad i=1,\ldots,n 
+%%E(Y_2)=H_2 \mu \\
+%%Cov(Y_2) = H_2 \Sigma {H_2}^T + {\sigma}^2 I_n = K_2 
+%\end{eqnarray}
+%Using the Gaussian property, we have the following probability density functions (pdf) for $i=1,\ldots,n$
 %\begin{equation}
-%\small{f_{X_2}(x_2) = P \exp\{-\frac{1}{2}{(x_2-\mu)}^T {\Sigma}^{-1}(x_2-\mu)\} }
+%\small{
+%f_{X_i}(x_i) = P \exp\{-\frac{1}{2}{(x_i-\mu)}^T {\Sigma}^{-1}(x_i-\mu)\},}
 %\end{equation}
-\begin{equation}
-\small{f_{N_i}(z_i) = Q \exp\{-\frac{1}{2}{z_i}^T \frac{1}{\sigma^2}z_i\},}
-\end{equation}
+%%\begin{equation}
+%%\small{f_{X_2}(x_2) = P \exp\{-\frac{1}{2}{(x_2-\mu)}^T {\Sigma}^{-1}(x_2-\mu)\} }
+%%\end{equation}
 %\begin{equation}
-%\small{f_N(z_2) = Q \exp\{-\frac{1}{2}{(z_2)}^T \frac{1}{\sigma^2} (z_2)\}, z_2=y_2-H_2 x_2,}
+%\small{f_{N_i}(z_i) = Q \exp\{-\frac{1}{2}{z_i}^T \frac{1}{\sigma^2}z_i\},}
 %\end{equation}
-\begin{equation}
-\small{f_{Y_i}(y_i) = R_i \exp\{-\frac{1}{2}{(y_i-A_i\mu)}^T {K_1}^{-1}(y_i-A_i\mu)\}, }
-\end{equation}
+%%\begin{equation}
+%%\small{f_N(z_2) = Q \exp\{-\frac{1}{2}{(z_2)}^T \frac{1}{\sigma^2} (z_2)\}, z_2=y_2-H_2 x_2,}
+%%\end{equation}
 %\begin{equation}
-%\small{f_{Y_2}(y_2) = R \exp\{-\frac{1}{2}{(y_2-H_2\mu)}^T {K_2}^{-1}(y_2-H_2\mu)\}}
+%\small{f_{Y_i}(y_i) = R_i \exp\{-\frac{1}{2}{(y_i-A_i\mu)}^T {K_1}^{-1}(y_i-A_i\mu)\}, }
 %\end{equation}
-where $P=\frac{1}{({2\pi})^{\frac{d}{2}}{|\Sigma|}^{\frac{1}{2}}}$, $Q=\frac{1}{({2\pi})^{\frac{d}{2}}\sigma^n}$, and $R_i=\frac{1}{({2\pi})^{\frac{d}{2}} {|K_1|}^{\frac{1}{2}}}$.
+%%\begin{equation}
+%%\small{f_{Y_2}(y_2) = R \exp\{-\frac{1}{2}{(y_2-H_2\mu)}^T {K_2}^{-1}(y_2-H_2\mu)\}}
+%%\end{equation}
+%where $P=\frac{1}{({2\pi})^{\frac{d}{2}}{|\Sigma|}^{\frac{1}{2}}}$, $Q=\frac{1}{({2\pi})^{\frac{d}{2}}\sigma^n}$, and $R_i=\frac{1}{({2\pi})^{\frac{d}{2}} {|K_1|}^{\frac{1}{2}}}$.
+The joint distribution of $(X_i, Y_i)$ is also 
 \begin{equation}
  \left[\begin{array}{c} X_i \\ Y_i \end{array}\right] = 
 \begin{bmatrix} I & 0 \\ A_i & I \end{bmatrix} \times \left[ \begin{array}{c} X_i \\ N_i \end{array} \right]      
@@ -191,9 +197,9 @@ where $P=\frac{1}{({2\pi})^{\frac{d}{2}}{|\Sigma|}^{\frac{1}{2}}}$, $Q=\frac{1}{
  \sim \mathcal{N} \left[\begin{bmatrix} \mu \\ A_i \mu \end{bmatrix}, \begin{bmatrix} \Sigma & \Sigma A_i^T \\ A_i \Sigma & A_i \Sigma A_i^T + \sigma^2 I \end{bmatrix} \right]
 \end{equation}
 \noindent
-Using conditional distributions
+The conditional distribution of $X_i$ given $Y_i$ is also Gaussian 
  \begin{equation}
-  f_{X_i|Y_i}(x_i|y_i) \sim \mathcal{N}(\alpha_i, L_i)
+  {X_i|Y_i} \sim \mathcal{N}(\alpha_i, L_i)
  \end{equation}
 %\begin{equation}
 %  f_{X_2|Y_2}(x_2|y_2) \sim N(\beta, M)
@@ -206,20 +212,20 @@ where
 \end{equation}
 So
 \begin{equation}
-x_i - x_j|y_i, y_j \sim \mathcal{N}(\alpha_i-\alpha_j, L_i+L_j)
+X_i - X_j|Y_i=y_i, Y_j=y_j \sim \mathcal{N}(\alpha_i-\alpha_j, L_i+L_j)
 \end{equation}
-Let $x_i - x_j = x_{ij}$, and $\alpha_i -\alpha_j=\alpha_{ij}$. Then, for small $\epsilon$, the probability that the $\ell_p$ distance between $x_i$ and $x_j$ is smaller than $\epsilon$ is
+Let $X_i - X_j = x_{ij}$, and $\alpha_i -\alpha_j=\alpha_{ij}$. Then, for small $\epsilon$, the probability that the $\ell_p$ distance between $X_i$ and $X_j$ is smaller than $\epsilon$ is
 \begin{align}
-&\Pr(||x_{ij}||_{p} < \epsilon|y_i,y_j)   \nonumber
+&\Pr(||X_{ij}||_{p} < \epsilon|Y_i=y_i,Y_j=y_j)   \nonumber
 %										 =	 %\Pr(||x_{ij}||_{p} < \epsilon|y_i,y_j)\\ %%\nonumber
 										=   \frac{1}{(2 \pi)^{\frac{d}{2}} |L_{i}+L_{j}|^ \frac{1}{2}} \times \\ 
 										& \int_{B_p(0,\epsilon) }^{}\exp \{ -\frac{1}{2}(x_{ij} - \alpha_{ij})^T(L_i+L_j)^{-1}(x_{ij} - \alpha_{ij}\}dx_{ij} 
 \end{align}
 \begin{equation}
-= \frac{\epsilon^d \text{Vol}(B_p(0,1)) }{(2 \pi)^{\frac{n}{2}} |L_i + L_j|^{\frac{1}{2}}} \exp\{-\frac{1}{2}\alpha_{ij}^T(L_i+L_j)^{-1}\alpha_{ij}\} +  \mathcal{O}(\epsilon^{d+1}) 
+= \frac{\epsilon^d \text{Vol}(B_p(0,1)) }{(2 \pi)^{\frac{d}{2}} |L_i + L_j|^{\frac{1}{2}}} \exp\{-\frac{1}{2}\alpha_{ij}^T(L_i+L_j)^{-1}\alpha_{ij}\} +  \mathcal{O}(\epsilon^{d+1}) 
 \label{eqn:metr}
 \end{equation}
-where $B_p(0,\epsilon)$ is the $\ell_p$ ball of radius $\epsilon$ in $\mathbb{R}^d$ centered at the origin. The probability of $\|x_{ij}\|_p < \epsilon$ given the noisy images $y_i$ and $y_j$  is a measure of the likelihood for the underlying clean images $x_i$ and $x_j$ to originate from the same viewing direction. So we can define our similarity measure after taking the logarithm on both sides of eqn.(\ref{eqn:metr}), dropping out the constants independent of $i$ and $j$, and substituting back $\alpha_{ij}$:
+where $B_p(0,\epsilon)$ is the $\ell_p$ ball of radius $\epsilon$ in $\mathbb{R}^d$ centered at the origin. The probability of $\|X_{ij}\|_p < \epsilon$ given the noisy images $y_i$ and $y_j$  is a measure of the likelihood for the underlying clean images $x_i$ and $x_j$ to originate from the same viewing direction. So we can define our similarity measure after taking the logarithm on both sides of eqn.(\ref{eqn:metr}), dropping out the constants independent of $i$ and $j$, and substituting back $\alpha_{ij}$:
 \begin{equation}\label{eq:mah_eqn}
  -\frac{1}{2}\log(|L_i + L_j|) -\frac{1}{2}(\alpha_i - \alpha_j)^T(L_i+L_j)^{-1}(\alpha_i -\alpha_j)
 \end{equation}
@@ -259,7 +265,7 @@ We propose an improved class averaging algorithm that incorporates the affinity 
 \includegraphics[width=.9 \columnwidth]{classavg_mah.pdf}
 \end{center}
 \vspace{-.15in}
-\caption{Results of class averaging of a synthetic dataset of $10000$ projection images of size $65 \times 65$, affected by CTF and at sn SNR$=1/40$. We show class averages with Initial Classification in the second row, and with the improved algorithm using the Mahalanobis distance in the third row. We use $K=10$ and $S=50$.}
+\caption{Results of class averaging of a synthetic dataset of $10000$ projection images of size $65 \times 65$, affected by CTF and at an SNR$=1/40$. We show class averages with Initial Classification in the second row, and with the improved algorithm using the anisotropic affinity in the third row. We use $K=10$ and $S=50$.}
 \vspace{-.25in}
 \label{fig:classavg}
 \end{figure}
@@ -294,7 +300,7 @@ using 10000 images, $K=10$ and $S=50$.
 \end{tabular}
 \end{center}
 \vspace{-.15in}
-\caption{The estimated probability density function of the angular distance (in degrees) between images classified into the same class by 1) Initial Classification and 2) Improved Classification using the Mahalanobis distance at different SNR's.}
+\caption{The estimated probability density function of the angular distance (in degrees) between images classified into the same class by 1) Initial Classification and 2) Improved Classification using the anisotropic affinity at different SNR's.}
 \vspace{-.15in}
 \label{fig:hist}
 \end{figure}
