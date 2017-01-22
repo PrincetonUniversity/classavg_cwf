@@ -43,6 +43,19 @@ M.~{van Heel} and J.~Frank,
   biological macromolecules,''
 \newblock {\em Ultramicroscopy}, vol. 6, no. 2, pp. 187--194, 1981.
 
+\bibitem{chirikjian1}
+Wooram Park and {Gregory S.} Chirikjian,
+\newblock ``An assembly automation approach to alignment of noncircular
+  projections in electron microscopy,''
+\newblock {\em IEEE Transactions on Automation Science and Engineering}, vol.
+  11, no. 3, pp. 668--679, 1 2014.
+
+\bibitem{chirikjian2}
+Wooram Park, Charles~R. Midgett, Dean~R. Madden, and Gregory~S. Chirikjian,
+\newblock ``A stochastic kinematic model of class averaging in single-particle
+  electron microscopy,''
+\newblock {\em I. J. Robotics Res.}, vol. 30, pp. 730--754, 2011.
+
 \bibitem{Dube1993}
 P.~Dube, P.~Tavares, R.~Lurz, and M.~van Heel,
 \newblock ``Bacteriophage {SPP}1 portal protein: a {DNA} pump with 13-fold
@@ -134,7 +147,7 @@ A.~Singer and R.~R. Coifman,
   pp. 226 -- 239, 2008.
 
 \bibitem{intgeom}
-R.~Talmon and R.R. Coifman,
+R.~Talmon and R.~R. Coifman,
 \newblock ``Empirical intrinsic geometry for nonlinear modeling and time series
   filtering,''
 \newblock {\em Proceedings of the National Academy of Sciences}, vol. 110, no.
